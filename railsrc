@@ -1,1 +1,10 @@
-/Users/jeremyro/Library/Mobile Documents/com~apple~CloudDocs/dots/.railsrc
+--database=postgresql
+--skip-action-cable
+--skip-active-storage
+--skip-coffee
+--skip-javascript
+--skip-keeps
+--skip-listen
+--skip-spring
+--skip-keeps
+--skip-turbolinks

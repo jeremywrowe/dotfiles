@@ -1,1 +1,1 @@
-/Users/jeremyro/Library/Mobile Documents/com~apple~CloudDocs/dots/.pryrc
+Pry.config.theme = 'solarized / 256'

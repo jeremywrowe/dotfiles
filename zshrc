@@ -1,1 +1,65 @@
-/Users/jeremyro/Library/Mobile Documents/com~apple~CloudDocs/dots/.zshrc
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="lambda"
+
+plugins=(elixir mix git rake-completion rake-fast)
+
+source $ZSH/oh-my-zsh.sh
+export MANPATH="/usr/local/man:$MANPATH"
+export ARCHFLAGS="-arch x86_64"
+
+export PATH="$PATH:$HOME/.rbenv/bin"
+export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:$HOME/.npm-global/bin"
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+export ARCHFLAGS="-arch x86_64"
+export EDITOR="atom -w"
+export CAPYBARA_TIMEOUT=10
+export BUNDLE_JOBS=8
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | selecta)"
+
+set -o emacs
+
+load_file() {
+  [ -f $1 ] && source $1
+}
+
+load_file "$HOME/.private"
+
+eval "$(rbenv init -)"
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# Find fuzzies
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!.git/*"'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Use vim cli mode
+bindkey -v
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+export KEYTIMEOUT=1
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
+HISTFILE=~/.histfile
+HISTSIZE=5000
+SAVEHIST=5000
+setopt autocd extendedglob
+unsetopt beep
+bindkey -v
+
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

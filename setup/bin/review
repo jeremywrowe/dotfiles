@@ -1,0 +1,6 @@
+#!/bin/bash
+
+git fetch origin pull/$1/head:pull/$1
+git checkout pull/$1
+
+echo "Thanks for giving some PR love to pull/$1"

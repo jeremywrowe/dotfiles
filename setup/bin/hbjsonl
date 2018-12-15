@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'jsonl'
+require 'uri'
+require 'awesome_print'
+
+contents = JSONL.parse(File.read(ARGV[0]))
+
+if ARGV.count > 1
+  result = contents.flat_map do |data|
+    output = data
+    ARGV[1..-1].each do |key|
+      if !output.nil? && output.respond_to?(:[])
+        if key =~ /d+/
+          output = output[key.to_i]
+        else
+          output = output[key]
+        end
+      end
+    end
+    output
+  end
+  ap result.reject(&:nil?)
+else
+  ap contents
+end

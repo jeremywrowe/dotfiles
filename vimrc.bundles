@@ -1,1 +1,30 @@
-/Users/jeremyro/Library/Mobile Documents/com~apple~CloudDocs/dots/.vimrc.bundles
+if &compatible
+  set nocompatible
+endif
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+" General Stuff
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-rails'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'christoomey/vim-tmux-navigator'
+
+" Tests
+Plugin 'janko-m/vim-test'
+Plugin 'christoomey/vim-tmux-runner'
+
+" Color Schemes
+Plugin 'dikiaap/minimalist'
+
+call vundle#end()
+filetype on

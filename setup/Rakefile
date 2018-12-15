@@ -1,0 +1,46 @@
+OH_MY_ZSH_README = "#{ENV["HOME"]}/.oh-my-zsh/README.md"
+
+desc "Setup a new machine - install brew, bin, and dotfiles"
+task :install => ['ohmyzsh:install', 'brew:packages', 'bin:install', 'dotfiles:install']
+
+namespace :brew do
+  desc "Install homebrew"
+  task :install do
+    if `which brew`.strip == ""
+      `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+    end
+  end
+
+  desc "Install homebrew packages"
+  task :packages do
+    `brew bundle`
+  end
+end
+
+namespace :bin do
+  desc "Install all personal binaries into ~/bin"
+  task :install do
+    cp_r "bin", "#{ENV["HOME"]}/bin" unless File.exist?("#{ENV["HOME"]}/bin")
+    `chmod a+x ~/bin`
+  end
+end
+
+namespace :dotfiles do
+  desc "Install dotfiles using rcup"
+  task :install do
+    `rcup -x setup`
+  end
+end
+
+file OH_MY_ZSH_README do |t|
+  `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+end
+
+namespace :ohmyzsh do
+  task :setup do
+    `chsh -s /bin/zsh` unless ENV["SHELL"].include?("zsh")
+  end
+
+  desc "Install oh-my-zsh and set shell to zsh"
+  task :install => [:setup, OH_MY_ZSH_README]
+end

@@ -1,0 +1,6 @@
+bin:install
+brew:install
+brew:packages
+dotfiles:install
+install
+ohmyzsh:setup

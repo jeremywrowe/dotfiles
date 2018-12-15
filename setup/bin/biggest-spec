@@ -1,0 +1,3 @@
+#!/bin/bash
+
+find spec -type f -name "*.rb" -exec grep -H -c '[^[:space:]]' {} \; | sort -nr -t":" -k2 | awk -F: '{print $1; exit;}'
