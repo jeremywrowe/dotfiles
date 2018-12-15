@@ -1,7 +1,22 @@
-OH_MY_ZSH_README = "#{ENV["HOME"]}/.oh-my-zsh/README.md"
+HOME_PATH = ENV["HOME"]
+BIN_PATH = File.join(HOME_PATH, "bin")
+OH_MY_ZSH_PATH = File.join(HOME_PATH, ".oh-my-zsh")
+VIM_VUNDLE_PATH = File.join(HOME_PATH, ".vim")
 
 desc "Setup a new machine - install brew, bin, and dotfiles"
-task :install => ['ohmyzsh:install', 'brew:packages', 'bin:install', 'dotfiles:install']
+task :install => ['ohmyzsh:install', 'brew:packages', 'bin:install', 'dotfiles:install', 'vim:install']
+
+# FILE TASK TRIGGERS
+
+file OH_MY_ZSH_PATH do
+  `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+end
+
+file VIM_VUNDLE_PATH do
+  `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+end
+
+# TASKS
 
 namespace :brew do
   desc "Install homebrew"
@@ -20,8 +35,8 @@ end
 namespace :bin do
   desc "Install all personal binaries into ~/bin"
   task :install do
-    cp_r "bin", "#{ENV["HOME"]}/bin" unless File.exist?("#{ENV["HOME"]}/bin")
-    `chmod a+x ~/bin`
+    ln_s "#{HOME_PATH}/.dotfiles/setup/bin", BIN_PATH unless File.exist?(BIN_PATH)
+    `chmod a+x #{HOME_PATH}/bin`
   end
 end
 
@@ -32,15 +47,21 @@ namespace :dotfiles do
   end
 end
 
-file OH_MY_ZSH_README do |t|
-  `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
-end
-
 namespace :ohmyzsh do
   task :setup do
     `chsh -s /bin/zsh` unless ENV["SHELL"].include?("zsh")
   end
 
   desc "Install oh-my-zsh and set shell to zsh"
-  task :install => [:setup, OH_MY_ZSH_README]
+  task :install => [:setup, OH_MY_ZSH_PATH]
+end
+
+namespace :vim do
+  desc "Install vundle and it's packages"
+  task :install => [VIM_VUNDLE_PATH, :vundle]
+
+  desc "Update vundle packages"
+  task :vundle do
+    `vim +BundleClean! +BundleInstall! +qa`
+  end
 end

@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-
-puts Dir["/Volumes/Source/*/*/"].join("\n")

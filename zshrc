@@ -3,7 +3,10 @@ ZSH_THEME="lambda"
 
 plugins=(elixir mix git rake-completion rake-fast)
 
+eval "$(rbenv init -)"
+
 source $ZSH/oh-my-zsh.sh
+
 export MANPATH="/usr/local/man:$MANPATH"
 export ARCHFLAGS="-arch x86_64"
 
@@ -15,23 +18,15 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 export ARCHFLAGS="-arch x86_64"
-export EDITOR="atom -w"
-export CAPYBARA_TIMEOUT=10
+export EDITOR="vim"
 export BUNDLE_JOBS=8
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | selecta)"
+alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
 
 set -o emacs
 
-load_file() {
-  [ -f $1 ] && source $1
-}
-
-load_file "$HOME/.private"
-
-eval "$(rbenv init -)"
-
+[ -f "$HOME/.private" ] && source "$HOME/.private"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
@@ -60,6 +55,3 @@ HISTSIZE=5000
 SAVEHIST=5000
 setopt autocd extendedglob
 unsetopt beep
-bindkey -v
-
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
