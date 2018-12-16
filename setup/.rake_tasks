@@ -3,4 +3,6 @@ brew:install
 brew:packages
 dotfiles:install
 install
-ohmyzsh:setup
+ohmyzsh:install
+vim:install
+vim:vundle

@@ -1,55 +1,56 @@
+require 'open3'
+
 HOME_PATH = ENV["HOME"]
 BIN_PATH = File.join(HOME_PATH, "bin")
 OH_MY_ZSH_PATH = File.join(HOME_PATH, ".oh-my-zsh")
 VIM_VUNDLE_PATH = File.join(HOME_PATH, ".vim")
+HOMEBREW_PATH = "/usr/local/Homebrew"
 
 desc "Setup a new machine - install brew, bin, and dotfiles"
-task :install => ['ohmyzsh:install', 'brew:packages', 'bin:install', 'dotfiles:install', 'vim:install']
-
-# FILE TASK TRIGGERS
+task :install => ['ohmyzsh:install', 'bin:install', 'brew:install', 'dotfiles:install', 'vim:install']
 
 file OH_MY_ZSH_PATH do
-  `sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"`
+  Open3.capture2e(%[sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"])
 end
 
 file VIM_VUNDLE_PATH do
-  `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+  Open3.capture2e(%[git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim])
 end
 
-# TASKS
+file HOMEBREW_PATH do
+  Open3.capture2e(%[/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"])
+end
+
+file BIN_PATH do
+  ln_s "#{HOME_PATH}/.dotfiles/setup/bin", BIN_PATH unless File.exist?(BIN_PATH)
+  Open3.capture2e("chmod a+x #{HOME_PATH}/bin")
+end
 
 namespace :brew do
   desc "Install homebrew"
-  task :install do
-    if `which brew`.strip == ""
-      `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
-    end
-  end
+  task :install => [HOMEBREW_PATH, 'brew:packages']
 
   desc "Install homebrew packages"
   task :packages do
-    `brew bundle`
+    Open3.capture2e("brew bundle")
   end
 end
 
 namespace :bin do
   desc "Install all personal binaries into ~/bin"
-  task :install do
-    ln_s "#{HOME_PATH}/.dotfiles/setup/bin", BIN_PATH unless File.exist?(BIN_PATH)
-    `chmod a+x #{HOME_PATH}/bin`
-  end
+  task :install => [BIN_PATH]
 end
 
 namespace :dotfiles do
   desc "Install dotfiles using rcup"
   task :install do
-    `rcup -x setup`
+    Open3.capture2e("yes | rcup -x setup")
   end
 end
 
 namespace :ohmyzsh do
   task :setup do
-    `chsh -s /bin/zsh` unless ENV["SHELL"].include?("zsh")
+    Open3.capture2e(%[chsh -s /bin/zsh]) unless ENV["SHELL"].include?("zsh")
   end
 
   desc "Install oh-my-zsh and set shell to zsh"
@@ -62,6 +63,6 @@ namespace :vim do
 
   desc "Update vundle packages"
   task :vundle do
-    `vim +BundleClean! +BundleInstall! +qa`
+    Open3.capture2e("vim +BundleClean! +BundleInstall! +qa")
   end
 end
