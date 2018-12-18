@@ -18,6 +18,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-fugitive'
 
 " Tests
 Plugin 'janko-m/vim-test'
