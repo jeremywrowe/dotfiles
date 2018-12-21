@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'securerandom'
+uuid = SecureRandom.uuid
+
+prefix = ARGV[0]
+uuid[0...prefix.length] = prefix if prefix 
+puts uuid

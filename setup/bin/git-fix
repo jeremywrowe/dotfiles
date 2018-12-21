@@ -1,0 +1,33 @@
+#!/bin/bash
+# 
+# git-fix
+#
+# Jeremy W. Rowe
+# Amends a commit with no edit
+
+bold=$(tput bold)
+purple=$(tput setaf 125)
+normal=$(tput sgr0)
+
+function newline() {
+  echo ""
+}
+
+function usage() {
+  newline
+  echo "git ${purple}fix${normal}"
+  newline
+  echo "Amends the last commit with no message."
+  echo "${bold}Note${normal} Only do this if your staging area is in the correct shape"
+  newline
+}
+
+case $1 in
+  -h|--help)
+    usage
+    exit 0
+  ;;
+  *)
+    git commit --amend --no-edit
+  ;;
+esac
