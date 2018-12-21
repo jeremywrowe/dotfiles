@@ -16,7 +16,7 @@ puts "*" * SCREEN_WIDTH
 puts "$PATH".center(SCREEN_WIDTH)
 puts "*" * SCREEN_WIDTH
 
-ENV['PATH'].split(':').uniq.sort.each do |path|
+ENV['PATH'].split(':').each do |path|
   chunks = path.split(File::SEPARATOR)
   colored_chunks = chunks.each_with_index.map { |c, i| c.colorize(COLORS[i + 1 % COLOR_LENGTH]) }
   puts "\t#{colored_chunks.join(File::SEPARATOR)}"
