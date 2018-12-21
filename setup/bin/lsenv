@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'bundler/inline'
+
+gemfile do
+  gem 'colorize'
+  gem 'ruby-terminfo', require: 'terminfo'
+end
+
+COLORS = String.colors
+COLOR_LENGTH = COLORS.length
+SCREEN_WIDTH = TermInfo.screen_size.last
+PADDING = 4
+SPACE_PADDING = " " * PADDING
+
+puts
+puts SPACE_PADDING + "*" * (SCREEN_WIDTH - PADDING * 2)
+puts "ENV".center(SCREEN_WIDTH)
+puts SPACE_PADDING + "*" * (SCREEN_WIDTH - PADDING * 2)
+puts
+
+`env`.split("\n").uniq.sort.each_with_index do |entry, index|
+  item, value = entry.split(/=/)
+  remaining = SCREEN_WIDTH - item.length - PADDING * 4
+  puts "#{SPACE_PADDING * 2}#{item}#{value[0..(remaining - 4)].rjust(remaining, '_').colorize(COLORS[(index) % COLOR_LENGTH])}#{SPACE_PADDING * 2}"
+end
+
+puts
+puts SPACE_PADDING + "*" * (SCREEN_WIDTH - PADDING * 2)
+puts

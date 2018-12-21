@@ -1,6 +1,26 @@
 #!/usr/bin/env ruby
 
-ENV['PATH'].split(':').uniq.sort.each do |path|
+require 'bundler/inline'
 
-  puts "\t#{path}"
+gemfile do
+  gem 'colorize'
+  gem 'ruby-terminfo', require: 'terminfo'
 end
+
+COLORS = String.colors
+COLOR_LENGTH = COLORS.length
+SCREEN_WIDTH = TermInfo.screen_size.last
+
+puts
+puts "*" * SCREEN_WIDTH
+puts "$PATH".center(SCREEN_WIDTH)
+puts "*" * SCREEN_WIDTH
+
+ENV['PATH'].split(':').uniq.sort.each do |path|
+  chunks = path.split(File::SEPARATOR)
+  colored_chunks = chunks.each_with_index.map { |c, i| c.colorize(COLORS[i + 1 % COLOR_LENGTH]) }
+  puts "\t#{colored_chunks.join(File::SEPARATOR)}"
+end
+
+puts "*" * SCREEN_WIDTH
+puts
