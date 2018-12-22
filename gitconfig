@@ -19,32 +19,16 @@
   # Shorthand Aliases
   br         = branch
   brr        = branch --remote
-  changes    = !"git diff ..origin/$(git cbranch)"
   ci         = commit
   co         = checkout
+  st         = status
   pick       = cherry-pick
   pluck      = stash pop
-  rebae      = rebase
   shave      = stash pop
-  st         = status
   unstage    = reset HEAD
 
   # Helper Aliases
-  added        = log --diff-filter=A
-  cbranch      = rev-parse --abbrev-ref HEAD
-  changed      = update-index --no-assume-unchanged
-  pushr        = !"git push --set-upstream origin `git cbranch`"
-  recent       = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'
-  unchanged    = update-index --assume-unchanged
-  first-commit = !"git show `git rev-list --max-parents=0 HEAD`"
-
-  # Log Aliases
-  l  = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
-  lf = "log --name-status --pretty=format:'%Cred%h%Creset -%C(yellow)%d %Cgreen(%cr) %C(bold blue)<%an>%Creset \n%s\n%Creset' --abbrev-commit --"
-  lp = "log -p"
-  lr = "log --grep=\"release/\" --format=\"%<(60)%Cred%D %Cgreen%h %<(18)%Cblue%cN %Creset%ad\""
-  lt = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-  
+  added = log --diff-filter=A
 
 [push]
   # default to tracking so git will only try to push the current branch
