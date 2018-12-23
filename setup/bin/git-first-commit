@@ -1,3 +1,4 @@
 #!/bin/bash
+ref=$(git rev-list --max-parents=0 HEAD)
 
-git show `git rev-list --max-parents=0 HEAD`
+git --no-pager log "$@" "$ref"

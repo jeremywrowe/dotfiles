@@ -28,6 +28,6 @@ case $1 in
     exit 0
   ;;
   *)
-    git commit --amend --no-edit
+    git commit --amend --no-edit "$@"
   ;;
 esac
