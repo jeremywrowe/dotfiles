@@ -6,21 +6,22 @@ require 'open-uri'
 URL = 'http://www.trianglemtb.com'.freeze
 INTERESTING_TRAILS = ['Brumley Forest', 'Crabtree', 'San Lee Gravity Park', 'San Lee Singletrack'].freeze
 
-half_of_screen = `tput cols`.to_i / 2 + 5
+screen_width = `tput cols`.to_i - 3
 document = Nokogiri::HTML(open(URL))
 rows = document.css('html body table td table tr')
 rows.shift
 
-puts "\n\n"
 filtered_rows = rows.reject do |row|
   name = row.css('td')[0].text.to_s.strip
   INTERESTING_TRAILS.index(name).nil?
 end
 
-filtered_rows.each do |tr|
+trails = filtered_rows.map do |tr|
   name, status, _rest = tr.css('td')
   striped_status = status.text.strip == 'OPEN' ? '✅' : '💔'
-  puts name.text.strip.rjust(half_of_screen) + ' ' + striped_status
+  "#{name.text.strip} #{striped_status}"
 end
 
-puts "\n" + 'Last Updated'.rjust(half_of_screen) + ' ' + Time.now.strftime('%r')
+puts
+puts (trails + ["Last Updated #{Time.now.strftime('%r')}"]).join(" | ").center(screen_width)
+
