@@ -1,13 +1,13 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="lambda"
 
-plugins=(elixir mix git rake-completion rake-fast)
+plugins=(elixir mix git rake-completion)
 
 eval "$(rbenv init -)"
 
 source $ZSH/oh-my-zsh.sh
 
-export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 export ARCHFLAGS="-arch x86_64"
 
 export PATH="$PATH:$HOME/.rbenv/bin"

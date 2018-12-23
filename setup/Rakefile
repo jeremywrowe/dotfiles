@@ -2,12 +2,13 @@ require 'open3'
 
 HOME_PATH = ENV["HOME"]
 BIN_PATH = File.join(HOME_PATH, "bin")
+MAN_PATH = "/usr/local/man/man1"
 OH_MY_ZSH_PATH = File.join(HOME_PATH, ".oh-my-zsh")
 VIM_VUNDLE_PATH = File.join(HOME_PATH, ".vim")
 HOMEBREW_PATH = "/usr/local/Homebrew"
 
-desc "Setup a new machine - install brew, bin, and dotfiles"
-task :install => ['ohmyzsh:install', 'bin:install', 'brew:install', 'dotfiles:install', 'vim:install']
+desc "Setup a new machine - install brew, bin, man, and dotfiles"
+task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install', 'dotfiles:install', 'vim:install']
 
 file OH_MY_ZSH_PATH do
   Open3.capture2e(%[sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"])
@@ -22,8 +23,13 @@ file HOMEBREW_PATH do
 end
 
 file BIN_PATH do
-  ln_s "#{HOME_PATH}/.dotfiles/setup/bin", BIN_PATH unless File.exist?(BIN_PATH)
+  ln_s "#{HOME_PATH}/.dotfiles/setup/bin", BIN_PATH
   Open3.capture2e("chmod a+x #{HOME_PATH}/bin")
+end
+
+file MAN_PATH do
+  `sudo mkdir -p /usr/local/man && sudo chown $USER /usr/local/man`
+  ln_s "#{HOME_PATH}/.dotfiles/setup/man/man1", MAN_PATH
 end
 
 namespace :brew do
@@ -39,6 +45,11 @@ end
 namespace :bin do
   desc "Install all personal binaries into ~/bin"
   task :install => [BIN_PATH]
+end
+
+namespace :man do
+  desc "Install all personal man files into ~/man"
+  task :install => [MAN_PATH]
 end
 
 namespace :dotfiles do

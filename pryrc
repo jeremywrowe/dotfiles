@@ -1,1 +1,1 @@
-Pry.config.theme = 'solarized / 256'
+Pry.config.theme = 'monokai'

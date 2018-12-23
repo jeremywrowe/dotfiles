@@ -44,10 +44,6 @@ syntax on
 let test#strategy = 'vtr'
 let test#ruby#use_binstubs = 1
 
-" NERDTree
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
 runtime macros/matchit.vim
 
 " fzf
