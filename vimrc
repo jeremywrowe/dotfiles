@@ -28,9 +28,16 @@ set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set title
 set clipboard=unnamed
+set guicursor=
+set t_Co=
 
 let mapleader = " "
 let maplocalleader = ";"
+
+let NERDTreeShowExecutableFlag=0
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let g:NERDTreeNodeDelimiter = "\u00a0"
 
 source ~/.vimrc.bundles
 
