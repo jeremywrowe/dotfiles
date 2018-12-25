@@ -17,6 +17,8 @@ export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+export RUBYOPT="--jit"
+
 export ARCHFLAGS="-arch x86_64"
 export EDITOR="vim"
 export BUNDLE_JOBS=8
