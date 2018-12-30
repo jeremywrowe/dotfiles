@@ -8,7 +8,6 @@ eval "$(rbenv init -)"
 source $ZSH/oh-my-zsh.sh
 
 export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
-export ARCHFLAGS="-arch x86_64"
 
 export PATH="$PATH:$HOME/.rbenv/bin"
 export PATH="$PATH:/usr/local/sbin"
@@ -17,7 +16,6 @@ export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-export ARCHFLAGS="-arch x86_64"
 export EDITOR="vim"
 export BUNDLE_JOBS=8
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
