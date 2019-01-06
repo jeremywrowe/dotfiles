@@ -1,5 +1,14 @@
+cask_args appdir: "/Applications"
+
 tap "thoughtbot/formulae"
 brew "rcm"
+
+cask "chromedriver"
+cask "docker"
+cask "firefox"
+cask "iterm2"
+cask "sizeup"
+cask "slack"
 
 brew "ack"
 brew "bat"
