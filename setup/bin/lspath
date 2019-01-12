@@ -10,17 +10,26 @@ end
 COLORS = String.colors
 COLOR_LENGTH = COLORS.length
 SCREEN_WIDTH = TermInfo.screen_size.last
+PIPED = !$stdout.isatty
 
-puts
-puts "*" * SCREEN_WIDTH
-puts "$PATH".center(SCREEN_WIDTH)
-puts "*" * SCREEN_WIDTH
+unless PIPED
+  puts
+  puts "*" * SCREEN_WIDTH
+  puts "$PATH".center(SCREEN_WIDTH)
+  puts "*" * SCREEN_WIDTH
+end
 
 ENV['PATH'].split(':').each do |path|
   chunks = path.split(File::SEPARATOR)
-  colored_chunks = chunks.each_with_index.map { |c, i| c.colorize(COLORS[i + 1 % COLOR_LENGTH]) }
-  puts "\t#{colored_chunks.join(File::SEPARATOR)}"
+  if PIPED
+    decorated_chunks = chunks
+  else
+    decorated_chunks = chunks.each_with_index.map { |c, i| c.colorize(COLORS[i + 1 % COLOR_LENGTH]) }
+  end
+  puts "#{PIPED ? "" : " "}#{decorated_chunks.join(File::SEPARATOR)}"
 end
 
-puts "*" * SCREEN_WIDTH
-puts
+unless PIPED
+  puts "*" * SCREEN_WIDTH
+  puts
+end
