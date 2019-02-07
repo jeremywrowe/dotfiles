@@ -1,7 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="lambda"
 
-plugins=(elixir mix git rake-completion)
+plugins=(elixir mix git rake-completion zsh-autosuggestions heroku)
 
 eval "$(rbenv init -)"
 
@@ -49,6 +49,11 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
+
+# Add autocomplete from homebrew
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
 
 HISTFILE=~/.histfile
 HISTSIZE=5000

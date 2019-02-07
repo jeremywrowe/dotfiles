@@ -4,6 +4,7 @@ HOME_PATH = ENV["HOME"]
 BIN_PATH = File.join(HOME_PATH, "bin")
 MAN_PATH = "/usr/local/man/man1"
 OH_MY_ZSH_PATH = File.join(HOME_PATH, ".oh-my-zsh")
+ZSH_AUTOSUGGESTIONS_PATH = File.join(OH_MY_ZSH_PATH, "custom", "plugins", "zsh-autosuggestions")
 VIM_VUNDLE_PATH = File.join(HOME_PATH, ".vim")
 HOMEBREW_PATH = "/usr/local/Homebrew"
 
@@ -12,6 +13,10 @@ task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install
 
 file OH_MY_ZSH_PATH do
   Open3.capture2e(%[sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"])
+end
+
+file ZSH_AUTOSUGGESTIONS_PATH do
+  Open3.capture2e(%[git clone https://github.com/zsh-users/zsh-autosuggestions #{ZSH_AUTOSUGGESTIONS_PATH}])
 end
 
 file VIM_VUNDLE_PATH do
@@ -65,7 +70,9 @@ namespace :ohmyzsh do
   end
 
   desc "Install oh-my-zsh and set shell to zsh"
-  task :install => [:setup, OH_MY_ZSH_PATH]
+  task :install => [:setup, OH_MY_ZSH_PATH, ZSH_AUTOSUGGESTIONS_PATH]
+  task :install_oh_my_zsh => [:setup, OH_MY_ZSH_PATH]
+  task :install_autosuggestions => [:setup, ZSH_AUTOSUGGESTIONS_PATH]
 end
 
 namespace :vim do
