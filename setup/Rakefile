@@ -7,6 +7,7 @@ OH_MY_ZSH_PATH = File.join(HOME_PATH, ".oh-my-zsh")
 ZSH_AUTOSUGGESTIONS_PATH = File.join(OH_MY_ZSH_PATH, "custom", "plugins", "zsh-autosuggestions")
 VIM_VUNDLE_PATH = File.join(HOME_PATH, ".vim")
 HOMEBREW_PATH = "/usr/local/Homebrew"
+TMUX_TPM_PATH = File.join(HOME_PATH, ".tmux", "plugins", "tpm")
 
 desc "Setup a new machine - install brew, bin, man, and dotfiles"
 task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install', 'dotfiles:install', 'vim:install']
@@ -21,6 +22,10 @@ end
 
 file VIM_VUNDLE_PATH do
   Open3.capture2e(%[git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim])
+end
+
+file TMUX_TPM_PATH do
+  Open3.capture2e(%[git clone https://github.com/tmux-plugins/tpm #{TMUX_TPM_PATH}])
 end
 
 file HOMEBREW_PATH do
@@ -83,4 +88,9 @@ namespace :vim do
   task :vundle do
     Open3.capture2e("vim +BundleClean! +BundleInstall! +qa")
   end
+end
+
+namespace :tmux do
+  desc "Install tmux and tpm plugins"
+  task :install => [TMUX_TPM_PATH]
 end
