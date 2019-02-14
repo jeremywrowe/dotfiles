@@ -7,7 +7,7 @@ cask "chromedriver"
 cask "docker"
 cask "firefox"
 cask "iterm2"
-cask "sizeup"
+cask "spectacle"
 cask "slack"
 
 brew "ack"
