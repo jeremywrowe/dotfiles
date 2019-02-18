@@ -10,7 +10,7 @@ HOMEBREW_PATH = "/usr/local/Homebrew"
 TMUX_TPM_PATH = File.join(HOME_PATH, ".tmux", "plugins", "tpm")
 
 desc "Setup a new machine - install brew, bin, man, and dotfiles"
-task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install', 'dotfiles:install', 'vim:install']
+task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install', 'dotfiles:install']
 
 file OH_MY_ZSH_PATH do
   Open3.capture2e(%[sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"])
