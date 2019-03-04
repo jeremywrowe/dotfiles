@@ -5,7 +5,6 @@ brew "rcm"
 
 cask "chromedriver"
 cask "docker"
-cask "iterm2"
 cask "spectacle"
 cask "slack"
 
