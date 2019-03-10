@@ -17,9 +17,19 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 
+[ -f "$HOME/.private" ] && source "$HOME/.private"
+
+GPG1_DIR=$(brew --prefix gpg1)/libexec/gpgbin
+if [ -d "${GPG1_DIR}" ]; then
+  export PATH="${GPG1_DIR}:${PATH}"
+fi
+
 export EDITOR="vim"
 export BUNDLE_JOBS=8
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
+
+export GPG_TTY=$(tty)
 
 alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
 alias ls="ls -G"
@@ -54,6 +64,10 @@ bindkey '^x^e' edit-command-line
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
+
+# Grab github token for bundler
+
+export BUNDLE_GITHUB__COM="$(cat ~/.config/hub|grep token | awk '{ print $2 }')"
 
 HISTFILE=~/.histfile
 HISTSIZE=5000

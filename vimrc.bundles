@@ -25,6 +25,8 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'ap/vim-css-color'
+Plugin 'c-brenn/phoenix.vim'
+Plugin 'tpope/vim-projectionist'
 
 " Tests
 Plugin 'janko-m/vim-test'

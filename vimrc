@@ -38,8 +38,9 @@ let NERDTreeShowExecutableFlag=0
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeNodeDelimiter = "\u00a0"
+let g:NERDTreeWinSize = 42
 
-let g:VtrPercentage = 45
+let g:VtrPercentage = 35
 let g:VtrOrientation = "h"
 let g:VtrClearBeforeSend = 0
 
