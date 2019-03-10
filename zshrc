@@ -27,6 +27,8 @@ export EDITOR="vim"
 export BUNDLE_JOBS=8
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
+export GPG_TTY=$(tty)
+
 alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
 alias ls="ls -G"
 

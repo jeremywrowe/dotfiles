@@ -46,3 +46,5 @@
 	user = jeremywrowe
 [web]
 	browser = open
+[commit]
+	gpgsign = true
