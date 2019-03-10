@@ -1,6 +1,7 @@
 [user]
 	name = Jeremy W. Rowe
 	email = jeremywrowe@users.noreply.github.com
+	signingkey = 0247B0B82D7A7CA0
 
 [color]
   color  = auto
