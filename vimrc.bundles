@@ -27,6 +27,10 @@ Plugin 'Quramy/tsuquyomi'
 Plugin 'ap/vim-css-color'
 Plugin 'c-brenn/phoenix.vim'
 Plugin 'tpope/vim-projectionist'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mattn/emmet-vim'
+Plugin 'w0rp/ale'
+Plugin 'airblade/vim-gitgutter'
 
 " Tests
 Plugin 'janko-m/vim-test'
