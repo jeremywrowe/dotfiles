@@ -1,5 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="lambda"
+ZSH_THEME="ys"
 
 plugins=(elixir mix git rake-completion zsh-autosuggestions heroku)
 

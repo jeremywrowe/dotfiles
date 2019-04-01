@@ -58,6 +58,11 @@ let test#ruby#use_binstubs = 1
 
 runtime macros/matchit.vim
 
+" ale
+let b:ale_linters = ['rubocop']
+let b:ale_fixers = ['rubocop', 'prettier', 'eslint']
+let b:ale_fix_on_save = 1
+
 " fzf
 set rtp+=~/.fzf
 nnoremap <C-p> :Files<cr>
