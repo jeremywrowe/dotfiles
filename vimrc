@@ -46,8 +46,14 @@ let g:VtrClearBeforeSend = 0
 
 source ~/.vimrc.bundles
 
+if (has("termguicolors"))
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 set background=dark
-colo minimalist
+colorscheme material
 
 filetype plugin indent on
 syntax on
@@ -59,9 +65,10 @@ let test#ruby#use_binstubs = 1
 runtime macros/matchit.vim
 
 " ale
-let b:ale_linters = ['rubocop']
-let b:ale_fixers = ['rubocop', 'prettier', 'eslint']
+let b:ale_linters = []
+let b:ale_fixers = ['prettier', 'eslint']
 let b:ale_fix_on_save = 1
+let g:ale_linters_explicit = 1
 
 " fzf
 set rtp+=~/.fzf
@@ -76,15 +83,6 @@ nnoremap <C-t> :tabnew<CR>
 nnoremap <C-n> :tabnext<CR>
 
 filetype plugin indent on
-
-function! <SID>StripTrailingWhitespaces()
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  let @/=_s
-  call cursor(l, c)
-endfunction
 
 " Wrap Markdown files at 80 Characters
 au BufRead,BufNewFile *.md setlocal textwidth=80
@@ -103,13 +101,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-nnoremap <silent> <Leader>ss :call <SID>StripTrailingWhitespaces()<CR>
 nnoremap <Leader>rr :%s/\<<C-r><C-w>\>/
-
-" NEOSnippet
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 imap jk <esc>
 
