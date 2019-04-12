@@ -28,9 +28,11 @@ export BUNDLE_JOBS=8
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export RACK_ATTACK_ENABLED=1
 
 export GPG_TTY=$(tty)
 export RPROMPT='%(1j.%j.)'
+
 
 alias e="$EDITOR"
 alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
