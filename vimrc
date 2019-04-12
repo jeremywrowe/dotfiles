@@ -28,8 +28,6 @@ set laststatus=2 " Always display the statusline in all windows
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set title
 set clipboard=unnamed
-set guicursor=
-set t_Co=
 
 let mapleader = " "
 let maplocalleader = ";"
@@ -45,15 +43,6 @@ let g:VtrOrientation = "h"
 let g:VtrClearBeforeSend = 0
 
 source ~/.vimrc.bundles
-
-if (has("termguicolors"))
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-
-set background=dark
-colorscheme material
 
 filetype plugin indent on
 syntax on
