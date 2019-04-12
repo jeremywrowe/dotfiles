@@ -1,11 +1,7 @@
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ys"
-
-plugins=(elixir mix git rake-completion zsh-autosuggestions heroku)
+autoload -U promptinit; promptinit
+prompt pure
 
 eval "$(rbenv init -)"
-
-source $ZSH/oh-my-zsh.sh
 
 export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 
