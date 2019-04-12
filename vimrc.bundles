@@ -17,20 +17,15 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-rails'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-projectionist'
 Plugin 'terryma/vim-multiple-cursors'
 
 " Tests
 Plugin 'janko-m/vim-test'
 Plugin 'christoomey/vim-tmux-runner'
-
-" Color Schemes
-Plugin 'kaicataldo/material.vim'
 
 call vundle#end()
 filetype on
