@@ -24,11 +24,16 @@ export EDITOR="vim"
 export BUNDLE_JOBS=8
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 export GPG_TTY=$(tty)
+export RPROMPT='%(1j.%j.)'
 
+alias e="$EDITOR"
 alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
 alias ls="ls -G"
+alias dot="vim $HOME/bin/\$(ls -1 "$HOME/bin" | fzf)"
+alias reload="source $HOME/.zshrc"
 
 set -o emacs
 

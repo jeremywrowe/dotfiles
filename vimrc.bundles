@@ -19,25 +19,18 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'Quramy/tsuquyomi'
-Plugin 'ap/vim-css-color'
-Plugin 'c-brenn/phoenix.vim'
 Plugin 'tpope/vim-projectionist'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'mattn/emmet-vim'
-Plugin 'w0rp/ale'
-Plugin 'airblade/vim-gitgutter'
 
 " Tests
 Plugin 'janko-m/vim-test'
 Plugin 'christoomey/vim-tmux-runner'
 
 " Color Schemes
-Plugin 'dikiaap/minimalist'
+Plugin 'kaicataldo/material.vim'
 
 call vundle#end()
 filetype on

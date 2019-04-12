@@ -3,7 +3,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-URL = 'http://www.trianglemtb.com'.freeze
+URL = 'https://www.trianglemtb.com'.freeze
 INTERESTING_TRAILS = ['Brumley Forest', 'Crabtree', 'San Lee Gravity Park', 'San Lee Singletrack'].freeze
 MAPPING = {
   'Brumley Forest'       => 'Brumley',
