@@ -1,5 +1,7 @@
-autoload -U promptinit; promptinit
-prompt pure
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="ys"
+plugins=(mix git zsh-autosuggestions heroku)
+source $ZSH/oh-my-zsh.sh
 
 eval "$(rbenv init -)"
 
