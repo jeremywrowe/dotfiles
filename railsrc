@@ -1,5 +1,4 @@
 --database=postgresql
 --skip-coffee
---skip-keeps
 --skip-turbolinks
---webpack=react
+--skip-action-cable

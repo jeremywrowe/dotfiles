@@ -1,11 +1,7 @@
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ys"
-
-plugins=(mix git zsh-autosuggestions heroku)
+autoload -U promptinit; promptinit
+prompt pure
 
 eval "$(rbenv init -)"
-
-source $ZSH/oh-my-zsh.sh
 
 export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 
@@ -15,6 +11,7 @@ export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 [ -f "$HOME/.private" ] && source "$HOME/.private"
 
