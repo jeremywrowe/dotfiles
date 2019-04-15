@@ -1,0 +1,3 @@
+#!/bin/sh
+
+git ls-remote origin |grep $1 | cut -d '/' -f 3
