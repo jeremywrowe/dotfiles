@@ -1,0 +1,7 @@
+bundler
+colorize
+gem-ctags
+nokogiri
+pry
+puma
+rails

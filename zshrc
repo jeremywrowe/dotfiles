@@ -3,11 +3,8 @@ ZSH_THEME="ys"
 plugins=(mix git zsh-autosuggestions heroku)
 source $ZSH/oh-my-zsh.sh
 
-eval "$(rbenv init -)"
-
 export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 
-export PATH="$PATH:$HOME/.rbenv/bin"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
@@ -22,22 +19,23 @@ if [ -d "${GPG1_DIR}" ]; then
   export PATH="${GPG1_DIR}:${PATH}"
 fi
 
-export EDITOR="vim"
 export BUNDLE_JOBS=8
+export EDITOR="vim"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-export RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export RACK_ATTACK_ENABLED=1
+export RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
 
 export GPG_TTY=$(tty)
 export RPROMPT='%(1j.%j.)'
 
-
-alias e="$EDITOR"
-alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
-alias ls="ls -G"
 alias dot="vim $HOME/bin/\$(ls -1 "$HOME/bin" | fzf)"
+alias e="$EDITOR"
+alias ls="ls -G"
+alias mux="tmuxinator"
+alias p="cd \$(tree $HOME /Volumes/Source/* -L 1 -d -f -i | fzf)"
 alias reload="source $HOME/.zshrc"
+alias puma-logs="tail -f ~/Library/Logs/puma-dev.log"
 
 set -o emacs
 
@@ -75,7 +73,10 @@ fi
 export BUNDLE_GITHUB__COM="$(cat ~/.config/hub|grep token | awk '{ print $2 }')"
 
 HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt autocd extendedglob
 unsetopt beep
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
