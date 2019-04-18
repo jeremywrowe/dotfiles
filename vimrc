@@ -4,7 +4,7 @@ set expandtab
 set exrc
 set foldlevel=1
 set foldmethod=indent
-set foldnestmax=5
+set foldnestmax=3
 set hidden
 set history=10
 set hlsearch
@@ -17,16 +17,16 @@ set noswapfile
 set nowrap
 set nowritebackup
 set number
-set ruler
+set noruler
 set secure
 set shell=/bin/bash
 set shiftround
 set shiftwidth=2
 set showcmd
 set tabstop=2
-set laststatus=2 " Always display the statusline in all windows
+set laststatus=0 " Never display the statusline
 set showtabline=2 " Always display the tabline, even if there is only one tab
-set title
+set notitle
 set clipboard=unnamed
 
 let mapleader = " "
@@ -46,6 +46,8 @@ source ~/.vimrc.bundles
 
 filetype plugin indent on
 syntax on
+
+colorscheme gruvbox
 
 " test runner
 let test#strategy = 'vtr'

@@ -3,29 +3,29 @@ if &compatible
 endif
 
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
+call plug#begin()
 
 " General Stuff
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-rails'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
 
 " Tests
-Plugin 'janko-m/vim-test'
-Plugin 'christoomey/vim-tmux-runner'
+Plug 'janko-m/vim-test', { 'for': 'ruby' }
+Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
 
-call vundle#end()
+" Color Schemes
+Plug 'morhetz/gruvbox'
+
+call plug#end()
 filetype on

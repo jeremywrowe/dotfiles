@@ -6,9 +6,10 @@ MAN_PATH = "/usr/local/man/man1"
 ASDF_PATH = File.join(HOME_PATH, ".asdf")
 OH_MY_ZSH_PATH = File.join(HOME_PATH, ".oh-my-zsh")
 ZSH_AUTOSUGGESTIONS_PATH = File.join(OH_MY_ZSH_PATH, "custom", "plugins", "zsh-autosuggestions")
-VIM_VUNDLE_PATH = File.join(HOME_PATH, ".vim")
 HOMEBREW_PATH = "/usr/local/Homebrew"
 TMUX_TPM_PATH = File.join(HOME_PATH, ".tmux", "plugins", "tpm")
+
+VIM_PLUG_PATH = File.join(HOME_PATH, ".vim", "autoload", "plug.vim")
 
 desc "Setup a new machine - install brew, bin, man, and dotfiles"
 task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install', 'dotfiles:install', 'asdf:install']
@@ -25,8 +26,8 @@ file ZSH_AUTOSUGGESTIONS_PATH do
   Open3.capture2e(%[git clone https://github.com/zsh-users/zsh-autosuggestions #{ZSH_AUTOSUGGESTIONS_PATH}])
 end
 
-file VIM_VUNDLE_PATH do
-  Open3.capture2e(%[git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim])
+file VIM_PLUG_PATH do
+  Open3.capture2e(%[curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim])
 end
 
 file TMUX_TPM_PATH do
@@ -92,11 +93,11 @@ end
 
 namespace :vim do
   desc "Install vundle and it's packages"
-  task :install => [VIM_VUNDLE_PATH, :vundle]
+  task :install => [VIM_PLUG_PATH, :vundle]
 
   desc "Update vundle packages"
   task :vundle do
-    Open3.capture2e("vim +BundleClean! +BundleInstall! +qa")
+    Open3.capture2e("vim +PlugInstall +qa")
   end
 end
 
