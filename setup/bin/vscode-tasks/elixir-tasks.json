@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "runTestSuite",
+        "type": "shell",
+        "command": "mix test",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "runCurrentTestFile",
+        "type": "shell",
+        "command": "mix test ${relativeFile}",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "runCurrentTest",
+        "type": "shell",
+        "command": "mix test ${relativeFile}:${lineNumber}",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      }
+    ]
+  }

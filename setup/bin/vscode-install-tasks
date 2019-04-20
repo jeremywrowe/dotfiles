@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'tty-prompt'
+require 'fileutils'
+
+pattern = %r{.*?/(?<name>\w+)-tasks.json}
+
+files_to_name = Dir[File.expand_path('./vscode-tasks/*-tasks.json', __dir__)]
+                .select { |path| path.match(pattern) }
+                .map { |path| [path.match(pattern)[:name], path] }
+
+file_mapping = Hash[files_to_name]
+prompt = TTY::Prompt.new
+file_type = prompt.select('What type of project?', file_mapping.keys)
+source_path = file_mapping[file_type]
+dest_path = '.vscode/tasks.json'
+
+exit 0 unless prompt.yes?('This will create .vscode/tasks.json. Do you wish to continue?')
+
+unless source_path
+  puts "Could not find #{source_path}"
+  exit 0
+end
+
+FileUtils.mkdir_p('.vscode')
+
+tasks_file_present = File.exist?(dest_path)
+if (tasks_file_present && prompt.yes?("Overwrite existing #{dest_path}?")) || !tasks_file_present
+  FileUtils.cp source_path, dest_path
+else
+  puts 'Alright, see ya.'
+  exit 0
+end
