@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [[ $1 == *"_test.rb"* ]]; then
+  ./bin/rails test $1
+else
+  ./bin/rspec $1
+fi
