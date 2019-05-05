@@ -33,7 +33,7 @@ alias dot="vim $HOME/bin/\$(ls -1 "$HOME/bin" | fzf)"
 alias e="$EDITOR"
 alias ls="ls -G"
 alias mux="tmuxinator"
-alias p="cd \$(tree $HOME /Volumes/Source/* -L 1 -d -f -i | fzf)"
+alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
 alias reload="source $HOME/.zshrc"
 alias puma-logs="tail -f ~/Library/Logs/puma-dev.log"
 
