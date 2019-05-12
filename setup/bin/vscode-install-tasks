@@ -4,7 +4,7 @@
 require 'tty-prompt'
 require 'fileutils'
 
-pattern = %r{.*?/(?<name>\w+)-tasks.json}
+pattern = %r{.*?/(?<name>[\w|-]+)-tasks.json}
 
 files_to_name = Dir[File.expand_path('./vscode-tasks/*-tasks.json', __dir__)]
                 .select { |path| path.match(pattern) }

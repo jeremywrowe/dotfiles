@@ -1,5 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="ys"
+ZSH_THEME="avit"
 plugins=(mix git zsh-autosuggestions heroku)
 source $ZSH/oh-my-zsh.sh
 

@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "runTestSuite",
+        "type": "shell",
+        "command": "bundle exec rake test",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "runCurrentTestFile",
+        "type": "shell",
+        "command": "bundle exec rake test TEST='${relativeFile}'",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "runCurrentTest",
+        "type": "shell",
+        "command": "bundle exec rake test TEST='${relativeFile}' TESTOPTS='--location=${relativeFile}:${lineNumber}'",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      }
+    ]
+}

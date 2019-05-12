@@ -1,0 +1,35 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "runTestSuite",
+        "type": "shell",
+        "command": "./script/test",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "runCurrentTestFile",
+        "type": "shell",
+        "command": "rails-test ${relativeFile}",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      },
+      {
+        "label": "runCurrentTest",
+        "type": "shell",
+        "command": "rails-test ${relativeFile}:${lineNumber}",
+        "group": "test",
+        "presentation": {
+          "reveal": "always",
+          "panel": "shared"
+        }
+      }
+    ]
+}

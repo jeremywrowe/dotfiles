@@ -24,7 +24,7 @@
       {
         "label": "runCurrentTest",
         "type": "shell",
-        "command": "./bin/rspec  ${relativeFile}:${lineNumber}",
+        "command": "./bin/rspec ${relativeFile}:${lineNumber}",
         "group": "test",
         "presentation": {
           "reveal": "always",
