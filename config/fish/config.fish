@@ -19,5 +19,9 @@ set -g -x GPG_TTY (tty)
 
 set fish_greeting
 
+function fish_user_key_bindings
+  bind \cr reverse_history_search 
+end
+
 source ~/.asdf/asdf.fish
 source ~/.private.fish
