@@ -20,18 +20,18 @@ set __fish_git_prompt_color_upstream_behind red
 
 
 # Icons
-set __fish_git_prompt_char_cleanstate ' 👍  '
-set __fish_git_prompt_char_conflictedstate ' ⚠️  '
-set __fish_git_prompt_char_dirtystate ' 💩  '
-set __fish_git_prompt_char_invalidstate ' 🤮  '
-set __fish_git_prompt_char_stagedstate ' 🚥  '
-set __fish_git_prompt_char_stashstate ' 📦  '
+set __fish_git_prompt_char_cleanstate ' 👍 '
+set __fish_git_prompt_char_conflictedstate ' ⚠️ '
+set __fish_git_prompt_char_dirtystate ' 💩 '
+set __fish_git_prompt_char_invalidstate ' 🤮 '
+set __fish_git_prompt_char_stagedstate ' 🚥 '
+set __fish_git_prompt_char_stashstate ' 📦 '
 set __fish_git_prompt_char_stateseparator ' | '
-set __fish_git_prompt_char_untrackedfiles ' 🔍  '
-set __fish_git_prompt_char_upstream_ahead ' ☝️  '
-set __fish_git_prompt_char_upstream_behind ' 👇  '
-set __fish_git_prompt_char_upstream_diverged ' 🚧  '
-set __fish_git_prompt_char_upstream_equal ' 💯 '
+set __fish_git_prompt_char_untrackedfiles ' 🔍 '
+set __fish_git_prompt_char_upstream_ahead ' ☝️ '
+set __fish_git_prompt_char_upstream_behind ' 👇 '
+set __fish_git_prompt_char_upstream_diverged ' 🚧 '
+set __fish_git_prompt_char_upstream_equal ' 💯'
 
 
 function fish_prompt
@@ -42,6 +42,6 @@ function fish_prompt
   set_color normal
 
   printf '%s ' (__fish_git_prompt)
-  echo -n "🐠  "
+  echo -n " "
   set_color normal
 end

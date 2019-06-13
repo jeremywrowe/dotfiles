@@ -47,8 +47,6 @@ source ~/.vimrc.bundles
 filetype plugin indent on
 syntax on
 
-colorscheme gruvbox
-
 " test runner
 let test#strategy = 'vtr'
 let test#ruby#use_binstubs = 1

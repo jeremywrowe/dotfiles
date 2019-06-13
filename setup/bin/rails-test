@@ -1,7 +1,12 @@
 #!/bin/sh
 
-if [[ $1 == *"_test.rb"* ]]; then
+if [[ $1 == *"test/"* ]]; then
+  echo "Running a single minitest"
   ./bin/rails test $1
-else
+elif [[ $1 == *"spec/"* ]]; then
+  echo "Running a single spec"
   ./bin/rspec $1
+else
+  echo "Running the entire suite"
+  ./script/test
 fi

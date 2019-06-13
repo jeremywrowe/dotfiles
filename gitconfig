@@ -11,7 +11,7 @@
 
 [core]
 	excludesfile = ~/.gitignore
-	editor = vim
+	editor = code --wait
 
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
@@ -27,6 +27,9 @@
   pluck      = stash pop
   shave      = stash pop
   unstage    = reset HEAD
+  wip        = commit --no-gpg-sign -m "wip"
+  fresh      = clean -fd
+  upstream   = !"git fetch && git log ..origin/master --patch"
 
 [push]
   # default to tracking so git will only try to push the current branch
@@ -48,3 +51,5 @@
 	browser = open
 [commit]
 	gpgsign = true
+[branch]
+  sort=-committerdate

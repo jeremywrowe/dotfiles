@@ -1,5 +1,7 @@
+#!/bin/bash
+
 if [[ $1 ]]; then
-  ngrok http -host-header=rewrite $1:80
+  ngrok http -subdomain=$2 -host-header=rewrite $1:80
 else
-  echo "USAGE: external-puma something.foo.test"
+  echo "USAGE: external-puma something.foo.test my-subdomain"
 fi
