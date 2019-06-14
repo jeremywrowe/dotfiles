@@ -42,10 +42,44 @@ let g:VtrPercentage = 35
 let g:VtrOrientation = "h"
 let g:VtrClearBeforeSend = 0
 
-source ~/.vimrc.bundles
+if &compatible
+  set nocompatible
+endif
+
+filetype off
+call plug#begin('~/.vim/plugged')
+
+" General Stuff
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'w0rp/ale'
+
+" Tests
+Plug 'janko-m/vim-test', { 'for': 'ruby' }
+Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
+
+" Color Schemes
+Plug 'morhetz/gruvbox'
+Plug 'sickill/vim-monokai'
+
+call plug#end()
 
 filetype plugin indent on
 syntax on
+
+set background=dark
+colo monokai
 
 " test runner
 let test#strategy = 'vtr'
@@ -54,10 +88,16 @@ let test#ruby#use_binstubs = 1
 runtime macros/matchit.vim
 
 " ale
-let b:ale_linters = []
-let b:ale_fixers = ['prettier', 'eslint']
-let b:ale_fix_on_save = 1
+let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
+let g:ale_linters = {
+\   'ruby': ['rubocop']
+\ }
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'ruby': ['trim_whitespace', 'remove_trailing_lines']
+\ }
 
 " fzf
 set rtp+=~/.fzf

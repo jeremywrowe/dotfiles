@@ -11,7 +11,7 @@
 
 [core]
 	excludesfile = ~/.gitignore
-	editor = code --wait
+	editor = nvim
 
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
@@ -53,3 +53,5 @@
 	gpgsign = true
 [branch]
   sort=-committerdate
+[credential]
+	helper = osxkeychain

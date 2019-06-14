@@ -11,13 +11,13 @@ if test -d $GPG1_DIR
   set -g -x PATH $GPG1_DIR $PATH
 end
 
-set -g -x BUNDLE_JOBS 8
-set -g -x EDITOR code
-set -g -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-set -g -x OBJC_DISABLE_INITIALIZE_FORK_SAFETY YES
-set -g -x RACK_ATTACK_ENABLED 1
-set -g -x GPG_TTY (tty)
-set -g -x ERL_AFLAGS '-kernel shell_history enabled'
+set BUNDLE_JOBS 8
+set EDITOR nvim
+set FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+set OBJC_DISABLE_INITIALIZE_FORK_SAFETY YES
+set RACK_ATTACK_ENABLED 1
+set GPG_TTY (tty)
+set ERL_AFLAGS '-kernel shell_history enabled'
 
 set fish_greeting
 
