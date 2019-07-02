@@ -11,13 +11,11 @@ set hlsearch
 set incsearch
 set laststatus=2
 set nobackup
-set nocompatible
 set nofoldenable
 set noswapfile
 set nowrap
 set nowritebackup
 set number
-set noruler
 set secure
 set shell=/bin/bash
 set shiftround
@@ -26,7 +24,6 @@ set showcmd
 set tabstop=2
 set laststatus=0 " Never display the statusline
 set showtabline=2 " Always display the tabline, even if there is only one tab
-set notitle
 set clipboard=unnamed
 
 let mapleader = " "
@@ -64,6 +61,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'roman/golden-ratio'
 
 " Tests
 Plug 'janko-m/vim-test', { 'for': 'ruby' }
@@ -88,6 +88,7 @@ let test#ruby#use_binstubs = 1
 runtime macros/matchit.vim
 
 " ale
+let g:ale_set_highlights = 0
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
@@ -118,10 +119,20 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 
 if executable('rg')
   set grepprg=rg\ --vimgrep
-  let g:ctrlp_user_command = 'rg %s --color=never --files --glob ""'
+  let g:ctrlp_user_command = 'rg %s --color=never --files'
   let g:ctrlp_use_caching = 0
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 
 nnoremap \ :Find<SPACE>
 

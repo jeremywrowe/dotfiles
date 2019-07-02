@@ -5,6 +5,7 @@ set PATH $HOME/.npm-global/bin $PATH
 set PATH $HOME/bin $PATH
 set PATH /Applications/Visual Studio Code.app/Contents/Resources/app/bin $PATH
 set PATH $HOME/.cargo/bin $PATH
+set PATH $HOME/.npm-global/bin $PATH
 
 set -g -x GPG1_DIR (printf "%s/%s" (brew --prefix gpg1) "libexec/gpgbin")
 if test -d $GPG1_DIR
@@ -23,6 +24,10 @@ set fish_greeting
 
 function fish_user_key_bindings
   bind \cr reverse_history_search 
+end
+
+function vim
+  echo "I think you meant nvim"
 end
 
 source ~/.private.fish
