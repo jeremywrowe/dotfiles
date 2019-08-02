@@ -1,11 +1,11 @@
-set PATH $HOME/.asdf/shims $PATH
-set PATH /usr/local/sbin $PATH
-set PATH /usr/local/bin $PATH
-set PATH $HOME/.npm-global/bin $PATH
-set PATH $HOME/bin $PATH
-set PATH /Applications/Visual Studio Code.app/Contents/Resources/app/bin $PATH
-set PATH $HOME/.cargo/bin $PATH
-set PATH $HOME/.npm-global/bin $PATH
+# set PATH $HOME/.asdf/shims $PATH
+#set PATH /usr/local/sbin $PATH
+#set PATH /usr/local/bin $PATH
+# set PATH $HOME/.npm-global/bin $PATH
+# set PATH $HOME/bin $PATH
+# set PATH /Applications/Visual Studio Code.app/Contents/Resources/app/bin $PATH
+# set PATH $HOME/.cargo/bin $PATH
+# set PATH $HOME/.npm-global/bin $PATH
 
 set -g -x GPG1_DIR (printf "%s/%s" (brew --prefix gpg1) "libexec/gpgbin")
 if test -d $GPG1_DIR
@@ -33,3 +33,4 @@ end
 source ~/.private.fish
 source ~/.asdf/asdf.fish
 
+# status --is-interactive; and source (rbenv init -|psub)

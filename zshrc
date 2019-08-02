@@ -11,6 +11,7 @@ export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.npm-global/bin"
 
 [ -f "$HOME/.private" ] && source "$HOME/.private"
 
@@ -20,7 +21,7 @@ if [ -d "${GPG1_DIR}" ]; then
 fi
 
 export BUNDLE_JOBS=8
-export EDITOR="vim"
+export EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export RACK_ATTACK_ENABLED=1
@@ -33,9 +34,16 @@ alias dot="vim $HOME/bin/\$(ls -1 "$HOME/bin" | fzf)"
 alias e="$EDITOR"
 alias ls="ls -G"
 alias mux="tmuxinator"
-alias p="cd \$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
 alias reload="source $HOME/.zshrc"
 alias puma-logs="tail -f ~/Library/Logs/puma-dev.log"
+alias dcom="docker-compose"
+
+p () {
+  local directory="$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
+  if [[ $directory ]]; then
+    cd $directory
+  fi
+}
 
 set -o emacs
 
@@ -80,3 +88,5 @@ unsetopt beep
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
+eval "$(rbenv init -)"

@@ -17,7 +17,6 @@ set nowrap
 set nowritebackup
 set number
 set secure
-set shell=/bin/bash
 set shiftround
 set shiftwidth=2
 set showcmd
@@ -25,6 +24,8 @@ set tabstop=2
 set laststatus=0 " Never display the statusline
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set clipboard=unnamed
+set scrolljump=-50
+set redrawtime=10000
 
 let mapleader = " "
 let maplocalleader = ";"
@@ -33,11 +34,14 @@ let NERDTreeShowExecutableFlag=0
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeNodeDelimiter = "\u00a0"
-let g:NERDTreeWinSize = 42
+let g:golden_ratio_exclude_nonmodifiable = 1
 
 let g:VtrPercentage = 35
 let g:VtrOrientation = "h"
 let g:VtrClearBeforeSend = 0
+
+let g:airline_statusline_ontop=1
+let g:airline_powerline_fonts = 1
 
 if &compatible
   set nocompatible
@@ -50,36 +54,34 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'roman/golden-ratio'
+Plug 'vim-airline/vim-airline'
+Plug 'BlakeWilliams/vim-pry'
 
 " Tests
 Plug 'janko-m/vim-test', { 'for': 'ruby' }
 Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
 
 " Color Schemes
-Plug 'morhetz/gruvbox'
-Plug 'sickill/vim-monokai'
+Plug 'fxn/vim-monochrome' 
 
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
-set background=dark
-colo monokai
+colorscheme monochrome
 
 " test runner
 let test#strategy = 'vtr'
@@ -88,7 +90,7 @@ let test#ruby#use_binstubs = 1
 runtime macros/matchit.vim
 
 " ale
-let g:ale_set_highlights = 0
+let g:ale_set_highlights = 1
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
@@ -154,6 +156,7 @@ map <Leader>h :noh<cr>
 nmap <Leader><Leader> :b#<CR>
 
 nmap <Leader>n :Vexplore<CR>
+nmap <Leader>p :call pry#insert()<cr>
 
 nnoremap <leader>ra :VtrAttachToPane<cr>
 nnoremap <leader>rf :VtrFocusRunner<cr>
