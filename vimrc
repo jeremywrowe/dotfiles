@@ -26,6 +26,7 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set clipboard=unnamed
 set scrolljump=-50
 set redrawtime=10000
+set background=dark
 
 let mapleader = " "
 let maplocalleader = ";"
@@ -42,6 +43,7 @@ let g:VtrClearBeforeSend = 0
 
 let g:airline_statusline_ontop=1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 if &compatible
   set nocompatible
@@ -74,14 +76,15 @@ Plug 'janko-m/vim-test', { 'for': 'ruby' }
 Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
 
 " Color Schemes
-Plug 'fxn/vim-monochrome' 
+Plug 'liuchengxu/space-vim-theme'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
-colorscheme monochrome
+colorscheme solarized
 
 " test runner
 let test#strategy = 'vtr'
