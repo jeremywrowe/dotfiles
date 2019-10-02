@@ -88,5 +88,3 @@ unsetopt beep
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
-
-eval "$(rbenv init -)"
