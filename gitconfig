@@ -56,3 +56,7 @@
   sort=-committerdate
 [credential]
 	helper = osxkeychain
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
