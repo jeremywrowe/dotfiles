@@ -10,6 +10,7 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
+export PATH="$PATH:$HOME/.cargo/env"
 
 export BUNDLE_JOBS=8
 export EDITOR="code --wait"

@@ -11,7 +11,7 @@ export PATH="$PATH:$HOME/.npm-global/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.npm-global/bin"
+export PATH="$PATH:$HOME/.cargo/env"
 
 [ -f "$HOME/.private" ] && source "$HOME/.private"
 
