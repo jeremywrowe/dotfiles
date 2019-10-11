@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'irb/completion'
 require 'irb/ext/save-history'
+require 'json'
+require 'base64'
 ARGV.concat [ "--readline", "--prompt-mode", "simple" ]
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history" 
@@ -57,4 +59,9 @@ end
 # awesome_print is prints prettier than pretty_print
 extend_console 'awesome_print' do
   alias pp ap
+end
+
+def transcript(token)
+  transaction = Transaction.find(token)
+  pp transaction.transcript
 end

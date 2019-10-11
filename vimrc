@@ -56,7 +56,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'scrooloose/nerdcommenter'
@@ -68,8 +68,9 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'w0rp/ale'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'vim-airline/vim-airline'
 Plug 'BlakeWilliams/vim-pry'
+Plug 'blueyed/vim-diminactive'
+Plug 'vim-airline/vim-airline'
 
 " Tests
 Plug 'janko-m/vim-test', { 'for': 'ruby' }
@@ -84,7 +85,7 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-colorscheme solarized
+colorscheme space_vim_theme
 
 " test runner
 let test#strategy = 'vtr'
