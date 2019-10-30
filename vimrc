@@ -71,6 +71,25 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'BlakeWilliams/vim-pry'
 Plug 'blueyed/vim-diminactive'
 Plug 'vim-airline/vim-airline'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/1.x',
+  \ 'for': [
+    \ 'javascript',
+    \ 'typescript',
+    \ 'css',
+    \ 'less',
+    \ 'scss',
+    \ 'json',
+    \ 'graphql',
+    \ 'markdown',
+    \ 'vue',
+    \ 'lua',
+    \ 'php',
+    \ 'python',
+    \ 'ruby',
+    \ 'html',
+    \ 'swift' ] }
 
 " Tests
 Plug 'janko-m/vim-test', { 'for': 'ruby' }
@@ -79,13 +98,14 @@ Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
 " Color Schemes
 Plug 'liuchengxu/space-vim-theme'
 Plug 'altercation/vim-colors-solarized'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
-colorscheme space_vim_theme
+colorscheme dracula
 
 " test runner
 let test#strategy = 'vtr'
