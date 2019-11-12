@@ -98,6 +98,7 @@ Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
 " Color Schemes
 Plug 'liuchengxu/space-vim-theme'
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
@@ -196,3 +197,11 @@ map <Leader>n :NERDTreeToggle<CR>
 map <Leader>m :NERDTreeFind<CR>
 map <Leader>c :g/\s*#/d<CR>
 nmap <silent> <leader>d <Plug>DashSearch
+
+nnoremap <C-G> :FzfRg<CR>
+command! -bang -nargs=* FzfRg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>),
+  \   1,
+  \   fzf#vim#with_preview({'options': '-q '.shellescape(expand('<cword>')).' --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
+  \   <bang>0)

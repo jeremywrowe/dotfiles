@@ -1,7 +1,6 @@
 [user]
 	name = Jeremy W. Rowe
 	email = jeremywrowe@users.noreply.github.com
-	signingkey = 0247B0B82D7A7CA0
 
 [color]
   color  = auto
@@ -27,7 +26,7 @@
   pluck      = stash pop
   shave      = stash pop
   unstage    = reset HEAD
-  wip        = commit --no-gpg-sign -m "wip"
+  wip        = commit -m "wip"
   fresh      = clean -fd
   up         = !"git log ..origin/master --pretty=format:%Cred%h%x09%Creset%Cgreen%an%x09%Creset%Cblue%ad%x09%Creset%s"
   upp        = !"git log ..origin/master --patch"
@@ -50,8 +49,6 @@
 	user = jeremywrowe
 [web]
 	browser = open
-[commit]
-	gpgsign = true
 [branch]
   sort=-committerdate
 [credential]
