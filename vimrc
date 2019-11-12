@@ -205,3 +205,21 @@ command! -bang -nargs=* FzfRg
   \   1,
   \   fzf#vim#with_preview({'options': '-q '.shellescape(expand('<cword>')).' --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
   \   <bang>0)
+
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
