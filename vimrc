@@ -129,7 +129,6 @@ let g:ale_fixers = {
 
 " fzf
 set rtp+=~/.fzf
-nnoremap <C-p> :Files<cr>
 
 " make git commit messages good
 autocmd Filetype gitcommit setlocal spell textwidth=80
@@ -146,9 +145,24 @@ au BufRead,BufNewFile *.md setlocal textwidth=80
 
 if executable('rg')
   set grepprg=rg\ --vimgrep
-  let g:ctrlp_user_command = 'rg %s --color=never --files'
-  let g:ctrlp_use_caching = 0
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+  " Find File w/Preview
+  command! -bang -nargs=* Find
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --color "always" '.shellescape(<q-args>),
+    \   1,
+    \   fzf#vim#with_preview({'options': '-q '.shellescape(expand('<cword>')).' --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
+    \   <bang>0)
+
+  " Search Word w/Preview
+  nnoremap <C-G> :FzfRg<CR>
+  command! -bang -nargs=* FzfRg
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>),
+    \   1,
+    \   fzf#vim#with_preview({'options': '-q '.shellescape(expand('<cword>')).' --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
+    \   <bang>0)
+
+  nnoremap <C-p> :Files<Cr>
 endif
 
 function! s:check_back_space() abort
@@ -197,14 +211,6 @@ map <Leader>n :NERDTreeToggle<CR>
 map <Leader>m :NERDTreeFind<CR>
 map <Leader>c :g/\s*#/d<CR>
 nmap <silent> <leader>d <Plug>DashSearch
-
-nnoremap <C-G> :FzfRg<CR>
-command! -bang -nargs=* FzfRg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>),
-  \   1,
-  \   fzf#vim#with_preview({'options': '-q '.shellescape(expand('<cword>')).' --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
-  \   <bang>0)
 
 function! s:buflist()
   redir => ls
