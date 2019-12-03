@@ -26,7 +26,6 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set clipboard=unnamed
 set scrolljump=-50
 set redrawtime=10000
-set background=dark
 
 let mapleader = " "
 let maplocalleader = ";"
@@ -71,6 +70,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'BlakeWilliams/vim-pry'
 Plug 'blueyed/vim-diminactive'
 Plug 'vim-airline/vim-airline'
+Plug 'ap/vim-css-color'
+Plug 'rhysd/vim-textobj-ruby'
+Plug 'kana/vim-textobj-user'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'branch': 'release/1.x',
@@ -91,6 +93,11 @@ Plug 'prettier/vim-prettier', {
     \ 'html',
     \ 'swift' ] }
 
+" Language Server
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-rls'
+
+
 " Tests
 Plug 'janko-m/vim-test', { 'for': 'ruby' }
 Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
@@ -106,7 +113,8 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-colorscheme dracula
+set background=light
+colorscheme solarized
 
 " test runner
 let test#strategy = 'vtr'
@@ -144,14 +152,15 @@ filetype plugin indent on
 au BufRead,BufNewFile *.md setlocal textwidth=80
 
 if executable('rg')
+  ".shellescape(<q-args>),
   set grepprg=rg\ --vimgrep
   " Find File w/Preview
-  command! -bang -nargs=* Find
+  command! -bang -nargs=* Find 
     \ call fzf#vim#grep(
-    \   'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --glob "!node_modules/*" --color "always" '.shellescape(<q-args>),
-    \   1,
-    \   fzf#vim#with_preview({'options': '-q '.shellescape(expand('<cword>')).' --color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
-    \   <bang>0)
+    \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"',
+    \ 1, 
+    \ fzf#vim#with_preview({'options': '--color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
+    \ <bang>0)
 
   " Search Word w/Preview
   nnoremap <C-G> :FzfRg<CR>
@@ -229,3 +238,33 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'options': '+m',
 \   'down':    len(<sid>buflist()) + 2
 \ })<CR>
+
+function! PromoteToLet()
+    :normal! dd
+    :normal! P
+    :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+    :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:nmap <leader>pl :PromoteToLet<cr>
+
+function PromoteToFetch()
+  :normal! dd
+  :normal! P
+  :.s/\v(\w+)\[(:?\w+)\]/\1\.fetch\(\2\)/
+  :normal ==
+endfunction
+command! -range PromoteToFetch <line1>,<line2>:call PromoteToFetch()
+map <leader>pf :PromoteToFetch<cr>
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+branch="$(git recent | fzf)"
+if [[ $branch ]]; then
+  git checkout $branch
+fi

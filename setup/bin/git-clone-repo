@@ -1,0 +1,5 @@
+
+repo="$(git list-repos | fzf)"
+if [[ $repo ]]; then
+  hub clone -p $repo
+fi
