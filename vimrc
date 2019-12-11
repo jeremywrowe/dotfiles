@@ -26,6 +26,7 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set clipboard=unnamed
 set scrolljump=-50
 set redrawtime=10000
+set relativenumber
 
 let mapleader = " "
 let maplocalleader = ";"
@@ -107,14 +108,15 @@ Plug 'liuchengxu/space-vim-theme'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'danilo-augusto/vim-afterglow'
 
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme afterglow
 
 " test runner
 let test#strategy = 'vtr'
