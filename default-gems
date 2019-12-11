@@ -4,4 +4,3 @@ gem-ctags
 nokogiri
 pry
 puma
-rails
