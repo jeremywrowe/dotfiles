@@ -1,0 +1,51 @@
+# /Users/jeremyrowe/.config/tmuxinator/spree.yml
+
+name: spree
+root: /Volumes/Source/spreedly
+
+windows:
+  - core:
+      root: /Volumes/Source/spreedly/core
+      layout: main-vertical
+      panes:
+        - nvim
+  - core-management:
+      root: /Volumes/Source/spreedly/core
+      layout: main-vertical
+      panes:
+        - bin/rails console
+        - git fetch
+        - tail -f log/development.log
+        - tail -f log/test.log
+  - id:
+      root: /Volumes/Source/spreedly/id
+      layout: main-vertical
+      panes:
+        - nvim
+  - id-management:
+      root: /Volumes/Source/spreedly/id
+      layout: main-vertical
+      panes:
+        - bin/rails console
+        - git fetch
+        - tail -f log/development.log
+        - tail -f log/test.log
+  - threeds-sample-app: 
+      root: /Volumes/Source/spreedly/threeds-sample-app
+      layout: main-vertical
+      panes:
+        - nvim
+  - threeds-sample-app-management: 
+      root: /Volumes/Source/spreedly/threeds-sample-app
+      layout: main-vertical
+      panes:
+        - bin/rails console
+        - git fetch
+        - bin/webpack-dev-server
+        - tail -f log/development.log
+        - tail -f log/test.log
+  - dev-services: 
+      root: /Volumes/Source/spreedly/dev-services
+      layout: main-vertical
+      panes:
+        - git fetch
