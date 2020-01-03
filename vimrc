@@ -57,7 +57,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -65,15 +64,9 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'w0rp/ale'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'BlakeWilliams/vim-pry'
-Plug 'blueyed/vim-diminactive'
 Plug 'vim-airline/vim-airline'
-Plug 'ap/vim-css-color'
-Plug 'rhysd/vim-textobj-ruby'
-Plug 'kana/vim-textobj-user'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'branch': 'release/1.x',

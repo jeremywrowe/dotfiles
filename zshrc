@@ -37,6 +37,7 @@ alias mux="tmuxinator"
 alias reload="source $HOME/.zshrc"
 alias puma-logs="tail -f ~/Library/Logs/puma-dev.log"
 alias dcom="docker-compose"
+alias cloud="cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs/'"
 
 p () {
   local directory="$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
@@ -44,6 +45,7 @@ p () {
     cd $directory
   fi
 }
+alias n="p"
 
 set -o emacs
 
