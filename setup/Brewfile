@@ -8,6 +8,7 @@ cask "docker"
 cask "paw"
 cask "slack"
 cask "slate"
+cask "keycastr"
 
 brew "ack"
 brew "autoconf"
