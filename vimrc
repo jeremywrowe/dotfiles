@@ -27,6 +27,7 @@ set clipboard=unnamed
 set scrolljump=-50
 set redrawtime=10000
 set relativenumber
+set mmp=5000
 
 let mapleader = " "
 let maplocalleader = ";"
@@ -102,6 +103,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'danilo-augusto/vim-afterglow'
+Plug 'whatyouhide/vim-gotham'
 
 call plug#end()
 
@@ -109,7 +111,7 @@ filetype plugin indent on
 syntax on
 
 set background=dark
-colorscheme afterglow
+colorscheme gruvbox
 
 " test runner
 let test#strategy = 'vtr'

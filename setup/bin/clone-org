@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+require "awesome_print"
+require "json"
+require "progress"
+
+print "Clone user repos? (y/N): "
+clone_user = gets.chomp.downcase == "y"
+
+if clone_user
+  print "Which user's repos: "
+  user = gets.chomp
+
+  if user == ""
+    puts "You must supply a user!"
+    exit 1
+  end
+
+  repos = JSON.parse(`curl -u #{ENV["BUNDLE_GITHUB__COM"]}:x-oauth-basic -s https://api.github.com/users/#{user}/repos?per_page=200`)
+else
+  print "Which organization's repos: "
+  org = gets.chomp
+
+  if org == ""
+    puts "You must supply an organization!"
+    exit 1
+  end
+
+  repos = JSON.parse(`curl -u #{ENV["BUNDLE_GITHUB__COM"]}:x-oauth-basic -s https://api.github.com/orgs/#{org}/repos?per_page=200`)
+end
+
+repos = repos.map {|repo| repo.slice(*%w[name full_name private ssh_url]) }.sort_by { |repo| repo["name"] }
+repos = repos.reject { |repo| File.exist?(repo["name"]) }
+
+print "There are #{repos.size} that have not been cloned. Would you like to clone them? (Y/n): "
+should_clone = gets.chomp.downcase
+
+if should_clone == "y" || should_clone == ""
+  Progress.start("Fetching all #{user || org}'s repos", repos.size)
+  repos.each do |repo|
+    Progress.step(1, repo["name"])
+    `git clone #{repo["ssh_url"]} > /dev/null 2>&1`
+  end
+else
+  puts "#" * 80
+  puts "Okay.. but here's what you're missing out on:"
+  puts "#" * 80
+  puts ""
+
+  repos.each do |repo|
+    puts "Name: #{repo["name"].ljust(40)} URL: #{repo["ssh_url"]}"
+  end
+end

@@ -1,4 +1,3 @@
 --database=postgresql
 --skip-coffee
 --skip-turbolinks
---skip-action-cable

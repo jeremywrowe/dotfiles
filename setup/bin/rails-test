@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if test -f ./.test-preamble; then
+  ./.test-preamble
+fi
+
 if [[ $1 == *"test/"* ]]; then
   echo "Running a single minitest"
   ./bin/rails test $1
