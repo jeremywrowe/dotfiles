@@ -8,9 +8,7 @@ OH_MY_ZSH_PATH = File.join(HOME_PATH, ".oh-my-zsh")
 ZSH_AUTOSUGGESTIONS_PATH = File.join(OH_MY_ZSH_PATH, "custom", "plugins", "zsh-autosuggestions")
 HOMEBREW_PATH = "/usr/local/Homebrew"
 TMUX_TPM_PATH = File.join(HOME_PATH, ".tmux", "plugins", "tpm")
-NVIM_PLUG_PATH = File.join(HOME_PATH, ".vim", "autoload", "plug.vim")
-
-puts NVIM_PLUG_PATH
+NVIM_PLUG_PATH = File.join(HOME_PATH, ".local", "share", "nvim", "site", "autoload", "plug.vim")
 
 desc "Setup a new machine - install brew, bin, man, and dotfiles"
 task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install', 'dotfiles:install', 'asdf:install']
@@ -28,7 +26,7 @@ file ZSH_AUTOSUGGESTIONS_PATH do
 end
 
 file NVIM_PLUG_PATH do
-  Open3.capture2e(%[curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim])
+  Open3.capture2e(%[curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim])
 end
 
 file TMUX_TPM_PATH do
