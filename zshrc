@@ -3,6 +3,9 @@ ZSH_THEME="avit"
 plugins=(mix git zsh-autosuggestions heroku)
 source $ZSH/oh-my-zsh.sh
 
+autoload -Uz compinit
+compinit
+
 export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 
 export PATH="$PATH:/usr/local/sbin"
@@ -12,13 +15,9 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.cargo/env"
+export PATH="/usr/local/opt/gnupg@1.4/libexec/gpgbin:$PATH"
 
 [ -f "$HOME/.private" ] && source "$HOME/.private"
-
-GPG1_DIR=$(brew --prefix gpg1)/libexec/gpgbin
-if [ -d "${GPG1_DIR}" ]; then
-  export PATH="${GPG1_DIR}:${PATH}"
-fi
 
 export BUNDLE_JOBS=8
 export EDITOR="nvim"
@@ -28,7 +27,6 @@ export RACK_ATTACK_ENABLED=1
 export RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
 
 export GPG_TTY=$(tty)
-export RPROMPT='%(1j.%j.)'
 
 alias dot="vim $HOME/bin/\$(ls -1 "$HOME/bin" | fzf)"
 alias e="$EDITOR"
@@ -38,6 +36,7 @@ alias reload="source $HOME/.zshrc"
 alias puma-logs="tail -f ~/Library/Logs/puma-dev.log"
 alias dcom="docker-compose"
 alias cloud="cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs/'"
+alias ll='exa --git -l'
 
 p () {
   local directory="$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
@@ -75,12 +74,13 @@ bindkey '^x^e' edit-command-line
 
 # Add autocomplete from homebrew
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  export FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
 # Grab github token for bundler
 
 export BUNDLE_GITHUB__COM="$(cat ~/.config/hub|grep token | awk '{ print $2 }')"
+export GITHUB_TOKEN="$(cat ~/.config/hub|grep token | awk '{ print $2 }')"
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
