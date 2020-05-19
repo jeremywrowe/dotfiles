@@ -28,6 +28,7 @@ set scrolljump=-50
 set redrawtime=10000
 set relativenumber
 set mmp=5000
+set termguicolors
 
 let mapleader = " "
 let maplocalleader = ";"
@@ -104,14 +105,15 @@ Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'whatyouhide/vim-gotham'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
 filetype plugin indent on
 syntax on
 
-set background=dark
-colorscheme gruvbox
+let ayucolor="dark"
+colorscheme dracula
 
 " test runner
 let test#strategy = 'vtr'
