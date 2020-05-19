@@ -1,4 +1,5 @@
 set backspace=2
+set clipboard=unnamed
 set diffopt+=vertical
 set expandtab
 set exrc
@@ -16,12 +17,13 @@ set noswapfile
 set nowrap
 set nowritebackup
 set number
+set redrawtime=10000
+set relativenumber
+set scrolljump=-50
 set secure
 set shiftround
 set shiftwidth=2
 set showcmd
-set tabstop=2
-set laststatus=0 " Never display the statusline
 set showtabline=2 " Always display the tabline, even if there is only one tab
 set clipboard=unnamed
 set scrolljump=-50
@@ -29,6 +31,11 @@ set redrawtime=10000
 set relativenumber
 set mmp=5000
 set termguicolors
+set tabstop=2
+
+if !has('gui_running')
+  set t_Co=256
+endif
 
 let mapleader = " "
 let maplocalleader = ";"
@@ -62,13 +69,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
+Plug 'vifm/vifm.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'branch': 'release/1.x',
@@ -132,6 +140,11 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'ruby': ['trim_whitespace', 'remove_trailing_lines']
+\ }
+
+" lightline
+let g:lightline = {
+\ 'colorscheme': 'wombat',
 \ }
 
 " fzf
