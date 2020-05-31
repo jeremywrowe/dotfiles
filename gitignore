@@ -20,3 +20,4 @@ elasticsearch.yml
 .vscode
 .vs
 .idea
+.test-preamble

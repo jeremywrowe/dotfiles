@@ -11,6 +11,10 @@
 [core]
 	excludesfile = ~/.gitignore
 	editor = nvim
+  pager = delta --plus-color="#012800" --minus-color="#340001"
+
+[interactive]
+  diffFilter = delta --color-only
 
 [pretty]
   colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset

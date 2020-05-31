@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'pastel'
+  gem 'progress'
+end
+
+include TTY::Color
+
+pastel = Pastel.new
+okay_to_update = /Your branch is up to date/
+stale = []
+repos = Dir.glob('*')
+
+Progress.start("Updating all repos in #{File.expand_path(".").split(File::SEPARATOR).last}", repos.size)
+
+repos.each do |project|
+  FileUtils.cd(project) do
+    Progress.step(0.5, project)
+    output = `git status > /dev/null 2>&1`
+    if output.match?(okay_to_update)
+      `git pull > /dev/null 2>&1`
+    else
+      `git fetch > /dev/null 2>&1`
+      stale << project
+    end
+    Progress.step(0.5, project)
+  end
+end
+
+puts "#{pastel.bold("The following projects could not be updated:")} #{pastel.yellow(stale.join(", "))}."
