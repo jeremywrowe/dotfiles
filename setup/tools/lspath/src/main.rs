@@ -12,7 +12,7 @@ fn main() {
         .expect("Expected to find path env variable");
     let entries: Vec<&str> = path.split(":").collect();
     
-    for entry in entries {
+    for (i, entry) in entries.iter().enumerate() {
         let breakdown: Vec<&str> = entry.split("/").collect();
         if !atty::is(Stream::Stdout) {
             println!("{}", entry);
@@ -20,7 +20,7 @@ fn main() {
         }
 
         let mut output: Vec<String> = Vec::new();
-        for (i, item) in breakdown.iter().enumerate() {
+        for item in breakdown.iter() {
             let offset = i % 5;
             if offset == 0 {
                 output.push(format!("{}", Red.paint(*item)));
