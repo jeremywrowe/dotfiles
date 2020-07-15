@@ -49,6 +49,7 @@
 
 [pull]
 	default = current
+	rebase = false
 [github]
 	user = jeremywrowe
 [web]

@@ -66,13 +66,15 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'vifm/vifm.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
