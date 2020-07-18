@@ -9,7 +9,7 @@ if [[ $1 == *"test/"* ]]; then
   ./bin/rails test $1
 elif [[ $1 == *"spec/"* ]]; then
   echo "Running a single spec"
-  ./bin/rspec $1
+  ./bin/rspec $1 --profile
 else
   echo "Running the entire suite"
   ./script/test
