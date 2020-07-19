@@ -1,16 +1,19 @@
 cask_args appdir: "/Applications"
 
+tap "homebrew/cask-fonts"
+cask "font-fira-code"
+
 tap "thoughtbot/formulae"
 brew "rcm"
 brew "gitsh"
 
 cask "chromedriver"
 cask "docker"
+cask "hammerspoon"
+cask "iterm2"
+cask "keycastr"
 cask "paw"
 cask "slack"
-cask "slate"
-cask "keycastr"
-cask "kitty"
 
 brew "ack"
 brew "autoconf"
