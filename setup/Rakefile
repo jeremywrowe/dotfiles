@@ -11,7 +11,7 @@ TMUX_TPM_PATH = File.join(HOME_PATH, ".tmux", "plugins", "tpm")
 NVIM_PLUG_PATH = File.join(HOME_PATH, ".local", "share", "nvim", "site", "autoload", "plug.vim")
 
 desc "Setup a new machine - install brew, bin, man, and dotfiles"
-task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install', 'dotfiles:install', 'asdf:install']
+task :install => ['ohmyzsh:install', 'bin:install', 'man:install', 'brew:install', 'dotfiles:install', 'asdf:install', 'vscode:plugins']
 
 file ASDF_PATH do
   Open3.capture2e(%[git clone https://github.com/asdf-vm/asdf.git ~/.asdf])
@@ -97,6 +97,13 @@ namespace :nvim do
   desc "Update vundle packages"
   task :plugins do
     Open3.capture2e("nvim +PlugInstall! +qa")
+  end
+end
+
+namespace :vscode do
+  desc "Install vscode plugins"
+  task :plugins do
+    Open3.capture2e("./install-vscode-extensions.sh")
   end
 end
 
