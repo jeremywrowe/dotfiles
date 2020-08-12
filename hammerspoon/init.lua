@@ -80,10 +80,38 @@ hs.hotkey.bind({"ctrl", "shift"}, "B", function()
     local screen = win:screen()
     local max = screen:frame()
 
-    f.x = max.x + 20
-    f.y = max.y + 20
-    f.w = max.w - 40
-    f.h = max.h - 40
+    f.x = max.x + (max.w * 0.025)
+    f.y = max.y + (max.h * 0.025)
+    f.w = max.w * 0.95
+    f.h = max.h * 0.95
+    win:setFrame(f, 0)
+end)
+
+-- Make the current window almost full screen, but centered
+hs.hotkey.bind({"ctrl", "shift"}, "M", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x + (max.w * 0.05)
+    f.y = max.y + (max.h * 0.05)
+    f.w = max.w * 0.90
+    f.h = max.h * 0.90
+    win:setFrame(f, 0)
+end)
+
+-- Make the current window almost full screen, but centered and slightly smaller
+hs.hotkey.bind({"ctrl", "shift"}, "N", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x + (max.w * 0.15)
+    f.y = max.y + (max.h * 0.15)
+    f.w = max.w * 0.70
+    f.h = max.h * 0.70
     win:setFrame(f, 0)
 end)
 
