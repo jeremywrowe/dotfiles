@@ -5,6 +5,10 @@ compinit
 
 export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 
+export GOHOME="/Volumes/Source/go"
+export GOBIN="/Volumes/Source/go/bin"
+
+export PATH="/usr/local/opt/gnupg@1.4/libexec/gpgbin:$PATH"
 export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/.npm-global/bin"
@@ -12,7 +16,7 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.cargo/env"
-export PATH="/usr/local/opt/gnupg@1.4/libexec/gpgbin:$PATH"
+export PATH="$PATH:$GOBIN"
 
 [ -f "$HOME/.private" ] && source "$HOME/.private"
 
