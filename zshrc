@@ -5,7 +5,7 @@ compinit
 
 export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 
-export GOHOME="/Volumes/Source/go"
+export GOPATH="/Volumes/Source/go-deps:/Volumes/Source/go"
 export GOBIN="/Volumes/Source/go/bin"
 
 export PATH="/usr/local/opt/gnupg@1.4/libexec/gpgbin:$PATH"

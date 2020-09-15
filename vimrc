@@ -52,7 +52,7 @@ let g:NERDTreeNodeDelimiter = "\u00a0"
 let g:golden_ratio_exclude_nonmodifiable = 1
 
 let g:VtrPercentage = 35
-let g:VtrOrientation = "h"
+let g:VtrOrientation = "v"
 let g:VtrClearBeforeSend = 0
 
 let g:airline_statusline_ontop=1

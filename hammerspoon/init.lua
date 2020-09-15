@@ -1,118 +1,64 @@
 -- Reload Hammerspoon
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
-    hs.reload()
+  hs.reload()
 end)
 
--- Make the window the size of the top of the screen
-hs.hotkey.bind({"ctrl", "shift"}, "H", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+-- Layouts
 
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w / 2
-    f.h = max.h
-    win:setFrame(f)
-end)
+positions = {
+  maximized = hs.layout.maximized,
+  centered = {x=0.15, y=0.15, w=0.7, h=0.7},
 
--- Make the window the size of the bottom of the screen
-hs.hotkey.bind({"ctrl", "shift"}, "J", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  left50 = {x=0.01, y=0.01, w=0.48, h=0.98},
+  right50 = {x=0.51, y=0.01, w=0.48, h=0.98},
 
-    f.x = max.x
-    f.y = max.y + (max.h / 2)
-    f.w = max.w
-    f.h = max.h / 2
-    win:setFrame(f)
-end)
+  upper50 = {x=0.01, y=0.01, w=.98, h=0.48},
+  upper50Left50 = {x=0.01, y=0.01, w=0.48, h=0.48},
+  upper50Right50 = {x=0.51, y=0.01, w=0.48, h=0.48},
 
--- Make the window the size of the left side of the screen
-hs.hotkey.bind({"ctrl", "shift"}, "K", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  lower50Left50 = {x=0.01, y=0.51, w=0.48, h=0.48},
+  lower50Right50 = {x=0.51, y=0.51, w=0.48, h=0.48},
 
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w
-    f.h = max.h / 2
-    win:setFrame(f)
-end)
-  
--- Make the current window the size of the right side of the screen
-hs.hotkey.bind({"ctrl", "shift"}, "L", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  lower50 = {x=0.01, y=0.51, w=.98, h=0.48},
+}
 
-    f.x = max.x + (max.w / 2)
-    f.y = max.y
-    f.w = max.w / 2
-    f.h = max.h
-    win:setFrame(f)
-end)
+grid = {
+  {key="u", units={positions.upper50Left50}},
+  {key="i", units={positions.upper50Right50}},
+  {key="o", units={positions.lower50Left50}},
+  {key="p", units={positions.lower50Right50}},
 
--- Make the current window full screen
-hs.hotkey.bind({"ctrl", "shift"}, "F", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+  {key="h", units={positions.left50}},
+  {key="j", units={positions.lower50}},
+  {key="k", units={positions.upper50}},
+  {key="l", units={positions.right50}},
 
-    f.x = max.x
-    f.y = max.y
-    f.w = max.w
-    f.h = max.h
-    win:setFrame(f, 0)
-end)
+  {key="m", units={positions.maximized}},
+  {key="n", units={positions.centered}},
+}
 
--- Make the current window almost full screen, meant for screen sharing
-hs.hotkey.bind({"ctrl", "shift"}, "B", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+function bindKey(key, fn)
+  hs.hotkey.bind({"cmd", "ctrl", "alt"}, key, fn)
+end
 
-    f.x = max.x + (max.w * 0.025)
-    f.y = max.y + (max.h * 0.025)
-    f.w = max.w * 0.95
-    f.h = max.h * 0.95
-    win:setFrame(f, 0)
-end)
+hs.fnutils.each(grid, function(entry)
+  bindKey(entry.key, function()
+    local units = entry.units
+    local screen = hs.screen.mainScreen()
+    local window = hs.window.focusedWindow()
+    local windowGeo = window:frame()
 
--- Make the current window almost full screen, but centered
-hs.hotkey.bind({"ctrl", "shift"}, "M", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
+    local index = 0
+    hs.fnutils.find(units, function(unit)
+      index = index + 1
 
-    f.x = max.x + (max.w * 0.05)
-    f.y = max.y + (max.h * 0.05)
-    f.w = max.w * 0.90
-    f.h = max.h * 0.90
-    win:setFrame(f, 0)
-end)
+      local geo = hs.geometry.new(unit):fromUnitRect(screen:frame()):floor()
+      return windowGeo:equals(geo)
+    end)
+    if index == #units then index = 0 end
 
--- Make the current window almost full screen, but centered and slightly smaller
-hs.hotkey.bind({"ctrl", "shift"}, "N", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local screen = win:screen()
-    local max = screen:frame()
-
-    f.x = max.x + (max.w * 0.15)
-    f.y = max.y + (max.h * 0.15)
-    f.w = max.w * 0.70
-    f.h = max.h * 0.70
-    win:setFrame(f, 0)
+    window:moveToUnit(units[index + 1])
+  end)
 end)
 
 function moveWindowToDisplay(d)
@@ -126,5 +72,17 @@ end
 hs.hotkey.bind({"ctrl", "shift"}, "1", moveWindowToDisplay(1))
 hs.hotkey.bind({"ctrl", "shift"}, "2", moveWindowToDisplay(2))
 hs.hotkey.bind({"ctrl", "shift"}, "3", moveWindowToDisplay(3))
+
+hs.hotkey.bind({"ctrl", "cmd", "alt"}, "3", function()
+  local win = hs.window.focusedWindow()
+  local screen = win:screen()
+  hs.layout.apply({
+    {"Mail", nil, screen, positions.left50,         nil, nil},
+    {"Keybase",    nil, screen, positions.upper50Right50, nil, nil},
+    {"Slack",   nil, screen, positions.lower50Right50, nil, nil}
+  })
+      --{"iTunes",  "iTunes",     laptopScreen, hs.layout.maximized, nil, nil},
+      --{"iTunes",  "MiniPlayer", laptopScreen, nil, nil, hs.geometry.rect(0, -48, 400, 48)},
+end)
 
 hs.alert.show("Hammerspoon config loaded successfully")
