@@ -45,10 +45,6 @@ endif
 let mapleader = " "
 let maplocalleader = ";"
 
-let NERDTreeShowExecutableFlag=0
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let g:NERDTreeNodeDelimiter = "\u00a0"
 let g:golden_ratio_exclude_nonmodifiable = 1
 
 let g:VtrPercentage = 35
@@ -76,7 +72,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
 Plug 'vifm/vifm.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
@@ -118,13 +113,7 @@ Plug 'janko-m/vim-test', { 'for': 'ruby' }
 Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
 
 " Color Schemes
-Plug 'liuchengxu/space-vim-theme'
-Plug 'altercation/vim-colors-solarized'
-Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'danilo-augusto/vim-afterglow'
-Plug 'whatyouhide/vim-gotham'
-Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 
@@ -239,8 +228,6 @@ map <Leader>T :TestFile<CR>
 map <Leader>l :TestLast<CR>
 map <Leader>v :TestVisit<CR>
 map <Leader>s :TestSuite<CR>
-map <Leader>n :NERDTreeToggle<CR>
-map <Leader>m :NERDTreeFind<CR>
 map <Leader>c :g/\s*#/d<CR>
 nmap <silent> <leader>d <Plug>DashSearch
 
