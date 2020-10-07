@@ -1,4 +1,4 @@
-background_opacity: .95
+background_opacity: 1
 
 # Colors (Dracula)
 colors:
@@ -30,7 +30,7 @@ colors:
     white:   '#e6e6e6'
 
 font:
-  size: 18.0
+  size: 14.0
   # The normal (roman) font face to use.
   normal:
     family: Dank Mono

@@ -63,60 +63,65 @@ if &compatible
 endif
 
 filetype off
-call plug#begin('~/.vim/plugged')
 
-" General Stuff
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'fatih/vim-go'
-Plug 'scrooloose/nerdcommenter'
-Plug 'vifm/vifm.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tpope/vim-bundler', { 'for': 'ruby' }
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'itchyny/lightline.vim'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'branch': 'release/1.x',
-  \ 'for': [
-    \ 'javascript',
-    \ 'typescript',
-    \ 'css',
-    \ 'less',
-    \ 'scss',
-    \ 'json',
-    \ 'graphql',
-    \ 'markdown',
-    \ 'vue',
-    \ 'lua',
-    \ 'php',
-    \ 'python',
-    \ 'ruby',
-    \ 'html',
-    \ 'swift' ] }
+if !exists('g:vscode')
+  call plug#begin('~/.vim/plugged')
 
-" Language Server
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-rls'
-Plug 'neoclide/coc-solargraph'
-Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+  " General Stuff
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'fatih/vim-go'
+  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'vifm/vifm.vim'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+  Plug 'tpope/vim-endwise', { 'for': 'ruby' }
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rails', { 'for': 'ruby' }
+  Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-surround'
+  Plug 'w0rp/ale'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+  Plug 'itchyny/lightline.vim'
+  Plug 'prettier/vim-prettier', {
+    \ 'do': 'yarn install',
+    \ 'branch': 'release/1.x',
+    \ 'for': [
+      \ 'javascript',
+      \ 'typescript',
+      \ 'css',
+      \ 'less',
+      \ 'scss',
+      \ 'json',
+      \ 'graphql',
+      \ 'markdown',
+      \ 'vue',
+      \ 'lua',
+      \ 'php',
+      \ 'python',
+      \ 'ruby',
+      \ 'html',
+      \ 'swift' ] }
 
-" Tests
-Plug 'janko-m/vim-test', { 'for': 'ruby' }
-Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
+  " Language Server
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc-rls'
+  Plug 'neoclide/coc-solargraph'
+  Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 
-" Color Schemes
-Plug 'dracula/vim', { 'as': 'dracula' }
+  " Tests
+  Plug 'janko-m/vim-test', { 'for': 'ruby' }
+  Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
 
-call plug#end()
+  " Color Schemes
+  Plug 'dracula/vim', { 'as': 'dracula' }
+
+  call plug#end()
+endif
+
 
 filetype plugin indent on
 syntax on
@@ -215,7 +220,8 @@ nmap <Leader>e :split <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>h :noh<cr>
 nmap <Leader><Leader> :b#<CR>
 
-nmap <Leader>n :Vexplore<CR>
+nmap <Leader>n :NERDTreeToggle<CR>
+nmap <Leader>m :NERDTreeFind<CR>
 nmap <Leader>p :call pry#insert()<cr>
 
 nnoremap <leader>ra :VtrAttachToPane<cr>

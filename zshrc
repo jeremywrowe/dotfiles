@@ -78,11 +78,6 @@ if type brew &>/dev/null; then
   export FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
-# Grab github token for bundler
-
-export BUNDLE_GITHUB__COM="$(cat ~/.config/hub|grep token | awk '{ print $2 }')"
-export GITHUB_TOKEN="$(cat ~/.config/hub|grep token | awk '{ print $2 }')"
-
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
@@ -90,4 +85,3 @@ setopt autocd extendedglob
 unsetopt beep
 
 . $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash

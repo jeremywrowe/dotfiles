@@ -6,7 +6,7 @@ end)
 -- Layouts
 
 positions = {
-  maximized = hs.layout.maximized,
+  maximized = {x=0.05, y=0.05, w=0.9, h=0.9},
   centered = {x=0.15, y=0.15, w=0.7, h=0.7},
 
   left50 = {x=0.01, y=0.01, w=0.48, h=0.98},

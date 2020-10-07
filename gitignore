@@ -21,3 +21,4 @@ elasticsearch.yml
 .vs
 .idea
 .test-preamble
+.tool-versions
