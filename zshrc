@@ -18,6 +18,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.cargo/env"
 export PATH="$PATH:$GOBIN"
 
+[ -d "$HOME/bin-private" ] && export PATH="$PATH:$HOME/bin-private"
 [ -f "$HOME/.private" ] && source "$HOME/.private"
 
 export BUNDLE_JOBS=8
@@ -29,26 +30,16 @@ export RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
 
 export GPG_TTY=$(tty)
 
-alias dot="vim $HOME/bin/\$(ls -1 "$HOME/bin" | fzf)"
-alias e="$EDITOR"
-alias ls="ls -G"
-alias mux="tmuxinator"
-alias reload="source $HOME/.zshrc"
-alias puma-logs="tail -f ~/Library/Logs/puma-dev.log"
-alias dcom="docker-compose"
-alias cloud="cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs/'"
-alias ll='exa --git -l'
-
 p () {
   local directory="$(tree /Volumes/Source/* -L 1 -d -f -i | fzf)"
   if [[ $directory ]]; then
     cd $directory
   fi
 }
-alias n="p"
 
 set -o emacs
 
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
 [ -f "$HOME/.private" ] && source "$HOME/.private"
 
 export NVM_DIR="$HOME/.nvm"
