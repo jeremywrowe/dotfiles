@@ -3,9 +3,13 @@
 alias dot="vim $HOME/bin/\$(ls -1 "$HOME/bin" | fzf)"
 alias e="$EDITOR"
 alias ls="ls -G"
-alias mux="tmuxinator"
 alias reload="exec $SHELL"
 alias puma-logs="tail -f ~/Library/Logs/puma-dev.log"
 alias dcom="docker-compose"
 alias cloud="cd '$HOME/Library/Mobile Documents/com~apple~CloudDocs/'"
 alias ll='exa --git -l'
+
+# TMUX aliases
+
+alias mux='tmuxinator'
+alias tut='tmux at -t'
