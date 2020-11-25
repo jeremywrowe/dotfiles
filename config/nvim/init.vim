@@ -86,6 +86,7 @@ if !exists('g:vscode')
   Plug 'w0rp/ale'
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
   Plug 'itchyny/lightline.vim'
+  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install',
     \ 'branch': 'release/1.x',
