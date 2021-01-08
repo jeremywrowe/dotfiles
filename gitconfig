@@ -36,11 +36,7 @@
   upp        = !"git log ..origin/master --patch"
 
 [push]
-  # default to tracking so git will only try to push the current branch
-  # otherwise git push will push all branches which can be problematic if you have
-  # changes in a branch that were not ready to be pushed (or if you use -f to force a push
-  # will overwrite remote branches when you only wanted to force-push the current branch)
-	default = current
+	default = simple
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -56,6 +52,7 @@
 	browser = open
 [branch]
   sort=-committerdate
+	autoSetupMerge = always
 [credential]
 	helper = osxkeychain
 [diff]

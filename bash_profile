@@ -1,5 +1,4 @@
 export DEPLOY_AS=jeremyro
-export PATH="$HOME/.cargo/bin:$PATH"
 
 export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 
@@ -82,3 +81,4 @@ function prompt() {
 }
 
 PROMPT_COMMAND=prompt
+source "$HOME/.cargo/env"

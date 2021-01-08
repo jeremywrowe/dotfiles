@@ -27,6 +27,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export RACK_ATTACK_ENABLED=1
 export RUBY_CONFIGURE_OPTS=--with-readline-dir="$(brew --prefix readline)"
+export BAT_THEME="Solarized (light)"
 
 export GPG_TTY=$(tty)
 

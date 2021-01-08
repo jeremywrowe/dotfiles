@@ -7,27 +7,15 @@ end)
 
 positions = {
   maximized = {x=0.05, y=0.05, w=0.9, h=0.9},
-  centered = {x=0.15, y=0.15, w=0.7, h=0.7},
+  centered = {x=0.1, y=0.1, w=0.8, h=0.8},
 
   left50 = {x=0.01, y=0.01, w=0.48, h=0.98},
   right50 = {x=0.51, y=0.01, w=0.48, h=0.98},
-
   upper50 = {x=0.01, y=0.01, w=.98, h=0.48},
-  upper50Left50 = {x=0.01, y=0.01, w=0.48, h=0.48},
-  upper50Right50 = {x=0.51, y=0.01, w=0.48, h=0.48},
-
-  lower50Left50 = {x=0.01, y=0.51, w=0.48, h=0.48},
-  lower50Right50 = {x=0.51, y=0.51, w=0.48, h=0.48},
-
   lower50 = {x=0.01, y=0.51, w=.98, h=0.48},
 }
 
 grid = {
-  {key="u", units={positions.upper50Left50}},
-  {key="i", units={positions.upper50Right50}},
-  {key="o", units={positions.lower50Left50}},
-  {key="p", units={positions.lower50Right50}},
-
   {key="h", units={positions.left50}},
   {key="j", units={positions.lower50}},
   {key="k", units={positions.upper50}},
@@ -72,17 +60,5 @@ end
 hs.hotkey.bind({"ctrl", "shift"}, "1", moveWindowToDisplay(1))
 hs.hotkey.bind({"ctrl", "shift"}, "2", moveWindowToDisplay(2))
 hs.hotkey.bind({"ctrl", "shift"}, "3", moveWindowToDisplay(3))
-
-hs.hotkey.bind({"ctrl", "cmd", "alt"}, "3", function()
-  local win = hs.window.focusedWindow()
-  local screen = win:screen()
-  hs.layout.apply({
-    {"Mail", nil, screen, positions.left50,         nil, nil},
-    {"Keybase",    nil, screen, positions.upper50Right50, nil, nil},
-    {"Slack",   nil, screen, positions.lower50Right50, nil, nil}
-  })
-      --{"iTunes",  "iTunes",     laptopScreen, hs.layout.maximized, nil, nil},
-      --{"iTunes",  "MiniPlayer", laptopScreen, nil, nil, hs.geometry.rect(0, -48, 400, 48)},
-end)
 
 hs.alert.show("Hammerspoon config loaded successfully")

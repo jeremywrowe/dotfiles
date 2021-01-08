@@ -28,9 +28,7 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 set clipboard=unnamed
 set scrolljump=-50
 set redrawtime=10000
-set relativenumber
 set mmp=5000
-set termguicolors
 set tabstop=2
 set omnifunc=syntaxcomplete#Complete
 set cmdheight=2
@@ -57,6 +55,8 @@ let g:airline#extensions#tabline#enabled = 1
 
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+
+let g:sneak#label=1
 
 if &compatible
   set nocompatible
@@ -87,6 +87,7 @@ if !exists('g:vscode')
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
   Plug 'itchyny/lightline.vim'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+  Plug 'justinmk/vim-sneak'
   Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install',
     \ 'branch': 'release/1.x',
@@ -125,8 +126,9 @@ endif
 
 
 filetype plugin indent on
-syntax on
 
+syntax enable
+set background=dark
 colorscheme dracula
 
 " test runner
@@ -173,10 +175,10 @@ if executable('rg')
   ".shellescape(<q-args>),
   set grepprg=rg\ --vimgrep
   " Find File w/Preview
-  command! -bang -nargs=* Find 
+  command! -bang -nargs=* Find
     \ call fzf#vim#grep(
     \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"',
-    \ 1, 
+    \ 1,
     \ fzf#vim#with_preview({'options': '--color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
     \ <bang>0)
 
