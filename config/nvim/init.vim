@@ -73,7 +73,7 @@ if !exists('g:vscode')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'sheerun/vim-polyglot'
   Plug 'fatih/vim-go'
-  Plug 'scrooloose/nerdtree'
+  Plug 'preservim/nerdtree'
   Plug 'scrooloose/nerdcommenter'
   Plug 'vifm/vifm.vim'
   Plug 'christoomey/vim-tmux-navigator'
@@ -84,7 +84,6 @@ if !exists('g:vscode')
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-surround'
   Plug 'w0rp/ale'
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
   Plug 'itchyny/lightline.vim'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'justinmk/vim-sneak'
@@ -115,8 +114,8 @@ if !exists('g:vscode')
   Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 
   " Tests
-  Plug 'janko-m/vim-test', { 'for': 'ruby' }
-  Plug 'christoomey/vim-tmux-runner', { 'for': 'ruby' }
+  Plug 'janko-m/vim-test'
+  Plug 'christoomey/vim-tmux-runner'
 
   " Color Schemes
   Plug 'dracula/vim', { 'as': 'dracula' }
@@ -132,12 +131,22 @@ set background=dark
 colorscheme dracula
 
 " test runner
-let test#strategy = 'vtr'
+if has("gui_vimr")
+  let test#strategy = 'neovim'
+else
+  let test#strategy = 'vtr'
+endif
+
+
 let test#ruby#use_binstubs = 1
 
 runtime macros/matchit.vim
 
 " ale
+highlight ALEErrorSign ctermbg=NONE ctermfg=red
+highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
 let g:ale_set_highlights = 1
 let g:ale_fix_on_save = 1
 let g:ale_linters_explicit = 1
@@ -223,9 +232,10 @@ nmap <Leader>e :split <C-R>=expand("%:p:h") . "/" <CR>
 map <Leader>h :noh<cr>
 nmap <Leader><Leader> :b#<CR>
 
-nmap <Leader>n :NERDTreeToggle<CR>
-nmap <Leader>m :NERDTreeFind<CR>
 nmap <Leader>p :call pry#insert()<cr>
+
+nnoremap <leader>n :NERDTreeToggle<cr>
+nnoremap <leader>m :NERDTreeFind<cr>
 
 nnoremap <leader>ra :VtrAttachToPane<cr>
 nnoremap <leader>rf :VtrFocusRunner<cr>
@@ -325,3 +335,13 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" copy current file name (relative/absolute) to system clipboard
+" relative path  (src/foo.txt)
+nnoremap <leader>cf :let @*=expand("%")<CR>
+" absolute path  (/something/src/foo.txt)
+nnoremap <leader>cF :let @*=expand("%:p")<CR>
+" filename       (foo.txt)
+nnoremap <leader>ct :let @*=expand("%:t")<CR>
+" directory name (/something/src)
+nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
