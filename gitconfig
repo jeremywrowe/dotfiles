@@ -12,6 +12,7 @@
 	excludesfile = ~/.gitignore
 	editor = nvim
   pager = delta
+	commentChar = ";"
 
 [interactive]
   diffFilter = delta --color-only
@@ -34,18 +35,14 @@
   fresh      = clean -fd
   up         = !"git log ..origin/master --pretty=format:%Cred%h%x09%Creset%Cgreen%an%x09%Creset%Cblue%ad%x09%Creset%s"
   upp        = !"git log ..origin/master --patch"
+  cleanup    = !"git branch --merged | grep -v \"*\" | xargs -n 1 git branch -d"
 
-[push]
-	default = simple
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
 	process = git-lfs filter-process
 
-[pull]
-	default = current
-	rebase = false
 [github]
 	user = jeremywrowe
 [web]
@@ -62,3 +59,8 @@
 [delta]
 	side-by-side = true
   syntax-theme = github
+[pull]
+	rebase = true
+	default = current
+[push]
+	default = current
