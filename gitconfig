@@ -30,7 +30,7 @@
   pick       = cherry-pick
   pluck      = stash pop
   shave      = stash pop
-  unstage    = reset HEAD
+	unstage = reset HEAD
   wip        = commit -m "wip"
   fresh      = clean -fd
   up         = !"git log ..origin/master --pretty=format:%Cred%h%x09%Creset%Cgreen%an%x09%Creset%Cblue%ad%x09%Creset%s"
@@ -47,9 +47,6 @@
 	user = jeremywrowe
 [web]
 	browser = open
-[branch]
-  sort=-committerdate
-	autoSetupMerge = always
 [credential]
 	helper = osxkeychain
 [diff]
@@ -60,7 +57,6 @@
 	side-by-side = true
   syntax-theme = github
 [pull]
-	rebase = true
-	default = current
-[push]
-	default = current
+	rebase = false
+[init]
+	defaultBranch = main

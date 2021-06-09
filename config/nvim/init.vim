@@ -46,7 +46,7 @@ let maplocalleader = ";"
 let g:golden_ratio_exclude_nonmodifiable = 1
 
 let g:VtrPercentage = 35
-let g:VtrOrientation = "v"
+let g:VtrOrientation = "h"
 let g:VtrClearBeforeSend = 0
 
 let g:airline_statusline_ontop=1
@@ -107,6 +107,15 @@ if !exists('g:vscode')
       \ 'html',
       \ 'swift' ] }
 
+  " Yavascript
+  Plug 'pangloss/vim-javascript'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'yuezk/vim-js'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'jparise/vim-graphql'
+
   " Language Server
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'neoclide/coc-rls'
@@ -119,6 +128,8 @@ if !exists('g:vscode')
 
   " Color Schemes
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'markvincze/panda-vim'
 
   call plug#end()
 endif
@@ -126,9 +137,12 @@ endif
 
 filetype plugin indent on
 
+let g:solarized_termcolors=256
 syntax enable
 set background=dark
-colorscheme dracula
+colorscheme panda
+
+let g:polyglot_disabled = ['jsx']
 
 " test runner
 if has("gui_vimr")
