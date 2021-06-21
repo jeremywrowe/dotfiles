@@ -111,8 +111,6 @@ if !exists('g:vscode')
   Plug 'pangloss/vim-javascript'
   Plug 'leafgarland/typescript-vim'
   Plug 'peitalin/vim-jsx-typescript'
-  Plug 'yuezk/vim-js'
-  Plug 'maxmellon/vim-jsx-pretty'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'jparise/vim-graphql'
 
@@ -141,8 +139,6 @@ let g:solarized_termcolors=256
 syntax enable
 set background=dark
 colorscheme panda
-
-let g:polyglot_disabled = ['jsx']
 
 " test runner
 if has("gui_vimr")
