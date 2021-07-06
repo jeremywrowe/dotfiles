@@ -196,7 +196,7 @@ if executable('rg')
   " Find File w/Preview
   command! -bang -nargs=* Find
     \ call fzf#vim#grep(
-    \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"',
+    \ 'rg -i --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"',
     \ 1,
     \ fzf#vim#with_preview({'options': '--color fg:252,bg:233,hl:67,fg+:252,bg+:235,hl+:81 --color info:144,prompt:68,spinner:135,pointer:135,marker:118'}, 'right:50%', '?'),
     \ <bang>0)
